@@ -1,0 +1,96 @@
+# Editor visual do blog. Escreve direto nos arquivos MDX do repositório,
+# então a validação do build continua valendo: artigo sem autor, com autor
+# fora do cadastro ADVOGADOS ou com categoria fora das nove áreas não sobe.
+#
+# O repositório existe: SSB-Advogados/ssb-site, privado. Falta conectar a
+# Netlify para que o /admin consiga autenticar.
+#
+# Quem publica precisa de conta no GitHub com acesso de escrita ao
+# repositório. Para dar acesso a alguém sem conta no GitHub, ver a seção
+# "Publicar sem conta no GitHub" em docs/publicacao.md.
+
+backend:
+  name: github
+  repo: "SSB-Advogados/ssb-site"
+  branch: main
+  commit_messages:
+    create: "Conteúdo: novo artigo {{slug}}"
+    update: "Conteúdo: atualiza {{slug}}"
+    delete: "Conteúdo: remove {{slug}}"
+
+locale: pt
+media_folder: "public/fotos/blog"
+public_folder: "/fotos/blog"
+
+collections:
+  - name: "blog"
+    label: "Artigos"
+    label_singular: "Artigo"
+    folder: "conteudo/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    summary: "{{titulo}} — {{autor}}"
+    sortable_fields: ["publicadoEm", "titulo"]
+    fields:
+      - label: "Título"
+        name: "titulo"
+        widget: "string"
+        hint: "De preferência uma pergunta real de cliente. Ex.: Acordo de sócios tem validade jurídica?"
+
+      - label: "Resumo"
+        name: "resumo"
+        widget: "text"
+        pattern: ["^.{1,155}$", "O resumo precisa ter no máximo 155 caracteres, porque vira a descrição no Google."]
+        hint: "Até 155 caracteres. Aparece no card e no Google."
+
+      - label: "Área"
+        name: "categoria"
+        widget: "select"
+        options:
+          - { label: "Societário e acordo de sócios", value: "direito-societario" }
+          - { label: "Contratos empresariais", value: "contratos-empresariais" }
+          - { label: "Bancário e defesa em execução", value: "direito-bancario" }
+          - { label: "Marcas, patentes e propriedade intelectual", value: "marcas-e-propriedade-intelectual" }
+          - { label: "Família e sucessões", value: "familia-e-sucessoes" }
+          - { label: "Imobiliário e patrimônio", value: "direito-imobiliario" }
+          - { label: "Criminal", value: "direito-criminal" }
+          - { label: "Previdenciário", value: "direito-previdenciario" }
+          - { label: "Concursos públicos", value: "concursos-publicos" }
+
+      - label: "Assinado por"
+        name: "autor"
+        widget: "select"
+        hint: "O advogado que revisou e aprovou. Nome e OAB aparecem no artigo."
+        options:
+          - { label: "Vitor Silvino — OAB/MG 230.955", value: "vitor-silvino" }
+          - { label: "Thayane Barbosa — OAB/MG 194.089", value: "thayane-barbosa" }
+          - { label: "Andreza Santos — OAB/MG 210.754", value: "andreza-santos" }
+
+      - label: "Publicado em"
+        name: "publicadoEm"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: false
+
+      - label: "Atualizado em"
+        name: "atualizadoEm"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: false
+        required: false
+        hint: "Mude sempre que revisar o texto. A data aparece no artigo."
+
+      - label: "Rascunho"
+        name: "rascunho"
+        widget: "boolean"
+        default: true
+        hint: "Ligado, o artigo não aparece no site. Desligue só depois da revisão de conformidade e da aprovação do sócio."
+
+      - label: "Texto"
+        name: "body"
+        widget: "markdown"
+        hint: "Primeiro parágrafo responde a pergunta do título por inteiro. Cada subtítulo é uma pergunta. Sem promessa de resultado, sem caso concreto, sem valor de honorário."

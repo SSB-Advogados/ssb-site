@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SSB Advogados — tokens
+   Direção escura. Todo par de cor usado aqui foi medido.
+   Ver docs/design-system.md
+   ============================================================ */
+
+:root {
+  /* Paleta oficial */
+  --ssb-argila: #B8A47D;
+  --ssb-taupe: #8A8781;
+  --ssb-eclipse: #1E2022;
+  --ssb-noite: #212B3B;
+  --ssb-linho: #F7F4EF;
+
+  /* Papéis */
+  --fundo: var(--ssb-eclipse);
+  --fundo-elevado: #252E3D;      /* Noite Marinha levemente erguida */
+  --fundo-profundo: #17191B;     /* Eclipse rebaixado, para faixas */
+  --texto: var(--ssb-linho);
+  --texto-suave: #B4B6B9;        /* 8,04 sobre o fundo. O Taupe puro dá 4,56 e é apertado demais para texto pequeno */
+  --acento: var(--ssb-argila);
+  --borda: rgba(184, 164, 125, 0.20);   /* filete de Argila, não cinza */
+  --borda-forte: rgba(184, 164, 125, 0.42);
+  --foco: var(--ssb-argila);
+  --rebaixar-foto: 0.98;
+}
+
+/* ------------------------------------------------------------------
+   Modo claro. As duas cores derivadas existem porque a Argila e o Taupe
+   puros reprovam em texto pequeno sobre o Linho: 2,21 e 3,26 contra o
+   mínimo de 4,5. Estas passam com 4,69 e 4,63.
+   ------------------------------------------------------------------ */
+:root[data-tema="claro"] {
+  --fundo: var(--ssb-linho);
+  --fundo-elevado: #FFFFFF;
+  --fundo-profundo: #EFEAE1;
+  --texto: var(--ssb-eclipse);
+  --texto-suave: #4E4B47;   /* 7,91 sobre o Linho. O #716E69 dava 4,63,
+                               passava o mínimo e lia mal ao lado dos
+                               8,04 do modo escuro. */
+  --acento: #645940;        /* 6,29 como texto, e 6,29 do Linho sobre ele
+                               quando vira fundo de botão. */
+  --borda: rgba(30, 32, 34, 0.14);
+  --borda-forte: rgba(121, 108, 82, 0.55);
+  --foco: var(--ssb-noite);
+  --rebaixar-foto: 1;
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-fundo-elevado: var(--fundo-elevado);
+  --color-fundo-profundo: var(--fundo-profundo);
+  --color-texto: var(--texto);
+  --color-texto-suave: var(--texto-suave);
+  --color-acento: var(--acento);
+  --color-borda: var(--borda);
+  --color-borda-forte: var(--borda-forte);
+  --color-foco: var(--foco);
+
+  --font-display: var(--fonte-display), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-texto: var(--fonte-texto), "Helvetica Neue", Arial, sans-serif;
+
+  /* Escala ampliada. O que dá ar de acabamento é tamanho e respiro,
+     não ornamento. */
+  --text-micro: 0.75rem;     /* 12 — rótulo em versalete espaçado. Era 11 e
+                                ficava apertado no celular. */
+  --text-mini: 0.875rem;     /* 14 */
+  --text-base: 1.0625rem;    /* 17 — corpo */
+  --text-medio: 1.375rem;    /* 22 — abertura */
+  --text-h3: 1.875rem;       /* 30 — a Cormorant tem olho pequeno, pede corpo maior */
+  --text-h2: 2.75rem;        /* 44 */
+  --text-h1: 3.5rem;         /* 56 */
+  --text-display: 5rem;      /* 80 */
+
+  --spacing-secao: 6rem;
+  --spacing-secao-larga: 9rem;
+  --radius-ssb: 2px;
+}
+
+html { color-scheme: dark; }
+html[data-tema="claro"] { color-scheme: light; }
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--font-texto);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display em serifada, peso leve, entrelinha curta e tracking negativo.
+   É o conjunto que dá o acabamento editorial. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+h3 { line-height: 1.14; letter-spacing: -0.008em; }
+h4 { font-family: var(--font-texto); font-weight: 500; }
+
+/* A palavra em itálico dentro do título, no acento */
+.enfase { font-style: italic; color: var(--acento); }
+
+/* Rótulo de seção: versalete espaçado, precedido de filete */
+.rotulo {
+  font-family: var(--font-texto);
+  font-size: var(--text-micro);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--acento);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rotulo::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: var(--borda-forte);
+  flex: none;
+}
+
+p { text-wrap: pretty; max-width: 66ch; }
+
+/* Palavra que não quebra, como e-mail longo, CNPJ ou número de OAB,
+   empurra a página inteira em tela de 320px. Isso impede. */
+body, h1, h2, h3, h4, p, li, td, dd, dt { overflow-wrap: break-word; }
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: var(--radius-ssb);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Véu do hero. No escuro, a foto some no fundo com pouca ajuda. No claro,
+   texto escuro sobre foto clara precisa de véu mais forte e mais largo,
+   senão a leitura sofre. */
+.hero-veu {
+  background:
+    linear-gradient(to right, var(--fundo) 0%, color-mix(in srgb, var(--fundo) 45%, transparent) 22%, transparent 48%),
+    linear-gradient(to top, var(--fundo) 0%, color-mix(in srgb, var(--fundo) 12%, transparent) 22%, transparent 38%),
+    linear-gradient(to bottom, var(--fundo) 0%, transparent 10%);
+}
+:root[data-tema="claro"] .hero-veu {
+  background:
+    linear-gradient(to right, var(--fundo) 0%, color-mix(in srgb, var(--fundo) 82%, transparent) 7%, color-mix(in srgb, var(--fundo) 38%, transparent) 18%, color-mix(in srgb, var(--fundo) 10%, transparent) 30%, transparent 42%),
+    linear-gradient(to top, var(--fundo) 0%, color-mix(in srgb, var(--fundo) 18%, transparent) 24%, transparent 40%),
+    linear-gradient(to bottom, var(--fundo) 0%, transparent 12%);
+}
+
+/* Logotipo por tema: no escuro o texto é branco, no claro é escuro. */
+.logo-claro { display: none; }
+:root[data-tema="claro"] .logo-escuro { display: none; }
+:root[data-tema="claro"] .logo-claro { display: block; }
+
+::selection { background: var(--ssb-argila); color: var(--ssb-eclipse); }
+
+/* Fotografia em fundo escuro pede um leve rebaixamento do brilho,
+   senão o retrato claro "salta" da página e quebra a unidade. */
+.foto { filter: brightness(var(--rebaixar-foto)) contrast(1.02); }

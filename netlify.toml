@@ -1,0 +1,15 @@
+# Publicação do site. O plugin do Next.js é instalado pela própria Netlify
+# quando ela detecta o framework; não precisa estar no package.json.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# O editor do blog. Sem isto, /admin devolve 404 em vez de abrir o editor.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
