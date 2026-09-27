@@ -13,3 +13,19 @@
   from = "/admin"
   to = "/admin/index.html"
   status = 200
+
+# Landing pages de tráfego pago (HTML estático em public/).
+[[redirects]]
+  from = "/lp-divorcio-01"
+  to = "/lp-divorcio-01/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/familia"
+  to = "/familia/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/familia-02"
+  to = "/familia-02/index.html"
+  status = 200
