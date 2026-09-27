@@ -29,3 +29,8 @@
   from = "/familia-02"
   to = "/familia-02/index.html"
   status = 200
+
+[[redirects]]
+  from = "/lp-exoneracao-01"
+  to = "/lp-exoneracao-01/index.html"
+  status = 200
