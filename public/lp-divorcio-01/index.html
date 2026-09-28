@@ -520,12 +520,20 @@ var GADS_CONVERSAO = "AW-18376309799/5XMgCOHDmIkdEKf4wLpE";    /* ex.: "AW-12345
   var link = "https://wa.me/" + WA_NUMERO + "?text=" + encodeURIComponent(WA_TEXTO + " (Atendimento nº " + protocolo + ")");
   document.querySelectorAll(".js-wa").forEach(function(a){
     a.href = link; a.target = "_blank"; a.rel = "noopener";
-    a.addEventListener("click", function(){
+    var enviar = function(){
+      if(a.__ssbEnviado) return; a.__ssbEnviado = true;
+      setTimeout(function(){ a.__ssbEnviado = false; }, 3000);
       var d = {protocolo:protocolo, pagina:"lp-divorcio-01", origem_botao:a.getAttribute("data-origem"), data:new Date().toISOString(), url:location.href, referrer:document.referrer};
       CAMPOS.forEach(function(k){ d[k] = get("ssb_"+k) || ""; });
-      if(ENDPOINT_RASTREIO){ try{ navigator.sendBeacon(ENDPOINT_RASTREIO, new Blob([JSON.stringify(d)],{type:"text/plain"})); }catch(e){} }
-      if(GADS_CONVERSAO && typeof gtag === "function"){ gtag("event","conversion",{send_to:GADS_CONVERSAO}); }
-    });
+      if(ENDPOINT_RASTREIO){
+        var corpo = JSON.stringify(d), ok = false;
+        try{ ok = navigator.sendBeacon(ENDPOINT_RASTREIO, new Blob([corpo],{type:"text/plain"})); }catch(e){}
+        if(!ok){ try{ fetch(ENDPOINT_RASTREIO, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"text/plain"}, body:corpo}); }catch(e){} }
+      }
+      if(GADS_CONVERSAO && typeof gtag === "function"){ gtag("event","conversion",{send_to:GADS_CONVERSAO, transport_type:"beacon"}); }
+    };
+    a.addEventListener("pointerup", enviar);
+    a.addEventListener("click", enviar);
   });
 })();
 </script>
