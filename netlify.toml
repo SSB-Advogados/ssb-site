@@ -34,3 +34,9 @@
   from = "/lp-exoneracao-01"
   to = "/lp-exoneracao-01/index.html"
   status = 200
+
+[[redirects]]
+  from = "/exoneracao-duvidas"
+    to = "/exoneracao-duvidas/index.html"
+      status = 200
+      
