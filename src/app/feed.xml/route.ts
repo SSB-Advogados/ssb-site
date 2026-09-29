@@ -1,6 +1,9 @@
 import { areaDe, autorDe, todosOsArtigos } from "@/lib/blog";
 import { ESCRITORIO } from "@/lib/escritorio";
 
+// Gerado no build, não sob demanda: o site é exportado estático.
+export const dynamic = "force-static";
+
 const base = `https://${ESCRITORIO.dominio}`;
 
 const escapar = (s: string) =>

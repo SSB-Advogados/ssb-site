@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { ESCRITORIO } from "@/lib/escritorio";
 
+// Gerado no build: o site é exportado estático.
+export const dynamic = "force-static";
+
 /**
  * Fora de produção o site inteiro fica fechado, para que preview
  * não concorra com o domínio real. Em produção, tudo liberado.

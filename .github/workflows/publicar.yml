@@ -1,0 +1,59 @@
+# Publica o site no GitHub Pages a cada envio para a main.
+#
+# Trocou a Netlify em 29/09/2026. Lá cada publicação custava 15 créditos de
+# uma cota de 300 por mês, e ao zerar o site saía do ar. Aqui não há cota de
+# publicação.
+name: Publicar site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Uma publicação por vez. Envios em sequência não atropelam a anterior.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Abre o robots.txt para os buscadores. Sem isto o site sobe
+      # bloqueado, que é o comportamento certo fora de produção.
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_AMBIENTE: producao
+
+      # O Jekyll do GitHub Pages ignora pastas que começam com _, e o
+      # Next.js gera tudo dentro de _next. Sem isto o site sobe sem CSS.
+      - run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

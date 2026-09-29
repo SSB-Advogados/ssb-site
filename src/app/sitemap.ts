@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { categoriasComArtigo, todosOsArtigos } from "@/lib/blog";
 import { AREAS, ESCRITORIO } from "@/lib/escritorio";
 
+// Gerado no build: o site é exportado estático.
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${ESCRITORIO.dominio}`;
   const agora = new Date();
