@@ -70,7 +70,7 @@ export default function Home() {
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 58vw"
-            className="object-cover object-[30%_28%] opacity-20 lg:opacity-100"
+            className="object-cover object-[48%_28%] opacity-20 lg:opacity-100"
             style={{
               maskImage:
                 "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 10%, #000 26%)",
