@@ -63,7 +63,7 @@ export default function Home() {
         {/* Foto em sangria: cobre a metade direita, altura cheia, e some
             no fundo por máscara de gradiente. Em telas estreitas ela vai
             para trás do texto, bem apagada, para não competir com a leitura. */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:-right-[12%] lg:w-[58%]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:-right-[12%] xl:-right-[15%] 2xl:-right-[18%] lg:w-[58%]">
           <Image
             src="/fotos/hero-sofa-2655i.webp"
             alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
