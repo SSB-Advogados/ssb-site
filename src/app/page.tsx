@@ -63,14 +63,14 @@ export default function Home() {
         {/* Foto em sangria: cobre a metade direita, altura cheia, e some
             no fundo por máscara de gradiente. Em telas estreitas ela vai
             para trás do texto, bem apagada, para não competir com a leitura. */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[58%]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:-right-[12%] lg:w-[58%]">
           <Image
             src="/fotos/hero-sofa-2655i.webp"
             alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 58vw"
-            className="object-cover object-[48%_28%] opacity-20 lg:opacity-100"
+            className="object-cover object-[30%_28%] opacity-20 lg:opacity-100"
             style={{
               maskImage:
                 "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 10%, #000 26%)",
