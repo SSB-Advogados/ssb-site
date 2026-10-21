@@ -96,24 +96,6 @@ export const SOCIOS: Socio[] = [
       "Conflitos familiares e patrimoniais no exterior",
     ],
   },
-  {
-    slug: "andreza-santos",
-    nome: "Andreza Santos",
-    oab: "OAB/MG 210.754",
-
-    instagram: "https://www.instagram.com/andrezapsantos.adv/",
-    foto: "/fotos/andreza-santos-2410b.webp",
-    fotoQuadrada: "/fotos/andreza-santos-2410b-q.webp",
-    areas: ["direito-criminal"],
-    destaques: [
-      "Prisão em flagrante e audiência de custódia",
-      "Tráfico de drogas",
-      "Tribunal do júri",
-      "Violência doméstica e Lei Maria da Penha",
-      "Execução criminal, progressão e livramento",
-      "Habeas corpus e recursos",
-    ],
-  },
 ];
 
 export type Area = {
@@ -131,7 +113,6 @@ export const AREAS: Area[] = [
   { slug: "marcas-e-propriedade-intelectual", nome: "Marcas, patentes e propriedade intelectual", socios: ["vitor-silvino"] },
   { slug: "familia-e-sucessoes", nome: "Família e sucessões", socios: ["thayane-barbosa"] },
   { slug: "direito-imobiliario", nome: "Imobiliário e patrimônio", socios: ["thayane-barbosa"] },
-  { slug: "direito-criminal", nome: "Criminal", socios: ["andreza-santos"] },
   // Previdenciário é conduzido por advogada associada. Nome e OAB pendentes,
   // e falta decidir se ela aparece no site. Até lá, sem "Quem conduz".
   { slug: "direito-previdenciario", nome: "Previdenciário", socios: null },
@@ -142,7 +123,7 @@ export const socioPorSlug = (slug: string) =>
   SOCIOS.find((s) => s.slug === slug);
 
 /**
- * Quem pode assinar artigo no blog. Hoje são exatamente os três sócios.
+ * Quem pode assinar artigo no blog. Hoje são exatamente os dois sócios.
  *
  * Existe separado de SOCIOS porque assinar artigo e ser sócio são coisas
  * diferentes: um advogado associado pode assinar o que escreve. Para incluir

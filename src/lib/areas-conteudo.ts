@@ -1,5 +1,5 @@
 /**
- * Conteúdo das nove páginas de área.
+ * Conteúdo das oito páginas de área.
  *
  * Toda frase aqui passou pela checagem de docs/compliance-oab.md:
  * sem promessa de resultado, sem caso concreto, sem valor de honorário,
@@ -381,70 +381,6 @@ export const CONTEUDO: ConteudoArea[] = [
       { p: "Atraso na entrega de imóvel na planta dá direito a quê?", r: "Depende do contrato e do prazo de tolerância pactuado. Superado o prazo, a discussão envolve rescisão com devolução, ou manutenção do contrato com indenização pelo período de atraso, conforme o que ficou contratado e o que a legislação de incorporação prevê." },
     ],
     relacionadas: ["familia-e-sucessoes", "direito-bancario", "direito-societario"],
-  },
-  {
-    slug: "direito-criminal",
-    rotulo: "Criminal",
-    h1: "Prisão em flagrante não espera o horário comercial.",
-    title: "Advocacia criminal em BH",
-    description:
-      "Flagrante, audiência de custódia, tráfico de drogas, tribunal do júri, Lei Maria da Penha e execução criminal. Atendimento em Belo Horizonte.",
-    abertura:
-      "As primeiras horas depois de uma prisão concentram decisões que vão pesar no processo inteiro. É nelas que se define o que se diz, o que se assina e o que se pede na audiência de custódia.",
-    problema: {
-      titulo: "Quando o assunto aparece, costuma ser assim.",
-      blocos: [
-        { titulo: "Alguém foi preso em flagrante agora", texto: "A família descobre pelo telefone, não sabe onde a pessoa está e a audiência de custódia acontece em até vinte e quatro horas." },
-        { titulo: "Chegou intimação para depor em inquérito", texto: "A pessoa é chamada à delegacia sem saber se figura como testemunha ou como investigada, e o que dizer ali repercute depois." },
-        { titulo: "A denúncia foi recebida", texto: "O processo começou, os prazos de defesa correm, e a resposta à acusação é a peça que define a estratégia." },
-        { titulo: "Existe medida protetiva no meio", texto: "Situações de violência doméstica envolvem prazo curto, medida protetiva de urgência e efeitos que alcançam convivência com os filhos e uso do imóvel comum." },
-        { titulo: "A pena está em execução e o direito não foi reconhecido", texto: "Progressão de regime, livramento condicional e outros benefícios dependem de requerimento e de cálculo, e não vêm automaticamente." },
-      ],
-    },
-    atuacao: {
-      titulo: "Como o escritório atua",
-      blocos: [
-        { titulo: "Urgência em flagrante e custódia", texto: "Localização do preso, acompanhamento do auto de prisão em flagrante e atuação na audiência de custódia, com pedido de liberdade ou de medida cautelar diversa." },
-        { titulo: "Inquérito policial", texto: "Acompanhamento do investigado no depoimento, requerimento de diligência, acesso aos autos e atuação para evitar que a investigação avance sobre o que não deve." },
-        { titulo: "Defesa em ação penal", texto: "Resposta à acusação, produção de prova, alegações finais e sustentação. Inclui tribunal do júri, tráfico de drogas e processos que correm sob a Lei Maria da Penha." },
-        { titulo: "Habeas corpus, recursos e execução penal", texto: "Habeas corpus contra prisão e contra constrangimento ilegal, recursos, e pedidos na execução penal como progressão de regime e livramento condicional." },
-      ],
-    },
-    incluso: {
-      entrega: [
-        "Atendimento de urgência em flagrante e custódia",
-        "Acompanhamento em depoimento na delegacia",
-        "Peças de defesa e acompanhamento do processo",
-        "Habeas corpus e recursos cabíveis",
-        "Atuação em tribunal do júri, em todas as fases",
-        "Defesa e acompanhamento em processos da Lei Maria da Penha",
-        "Pedidos na execução criminal, com cálculo de requisitos",
-      ],
-    },
-    erros: {
-      titulo: "O que costuma dar errado",
-      intro:
-        "Na área criminal, a maior parte do prejuízo se forma antes de o processo começar, em decisões tomadas sem orientação.",
-      blocos: [
-        { titulo: "Falar antes de conversar com advogado", texto: "O direito ao silêncio existe e não é confissão. Depoimento prestado sem orientação vira prova, e a versão dada às pressas costuma ser mais difícil de sustentar depois do que o silêncio." },
-        { titulo: "Assinar sem ler", texto: "Termo de depoimento, auto de prisão e termo de exibição descrevem fatos. O que está escrito ali passa a constar do processo, mesmo quando não corresponde ao que a pessoa quis dizer." },
-        { titulo: "Deixar a custódia acontecer sem defesa", texto: "A audiência de custódia é o primeiro momento em que se discute a legalidade da prisão e a necessidade de manter alguém preso. Ela acontece com ou sem advogado constituído." },
-        { titulo: "Tratar intimação de inquérito como formalidade", texto: "O inquérito é a fase em que a acusação é montada. O que é dito e o que deixa de ser requerido ali chega ao processo já consolidado." },
-        { titulo: "Esperar que o benefício da execução venha sozinho", texto: "Progressão e livramento dependem de requisito objetivo e subjetivo, de cálculo e de requerimento. Sem acompanhamento, o direito adquirido em determinada data pode ser reconhecido muito depois." },
-      ],
-    },
-    faq: [
-      { p: "O que é audiência de custódia?", r: "É a apresentação de quem foi preso a um juiz, em até vinte e quatro horas da prisão, prevista no art. 310 do Código de Processo Penal. Nela se avalia a legalidade da prisão, a ocorrência de maus-tratos e se o caso comporta liberdade, medida cautelar diversa ou prisão preventiva." },
-      { p: "Sou obrigado a falar na delegacia?", r: "Não. O direito ao silêncio é garantido pelo art. 5º, LXIII, da Constituição, e o silêncio não pode ser interpretado em prejuízo de quem o exerce. A identificação pessoal, essa sim, é exigível." },
-      { p: "Preciso de advogado no inquérito policial?", r: "A lei não condiciona o inquérito à presença de advogado, mas o Estatuto da Advocacia assegura o acompanhamento do investigado no depoimento e o acesso aos autos já documentados. Na prática, é a fase em que a atuação mais influencia o que chega ao processo." },
-      { p: "O que é habeas corpus?", r: "É a ação constitucional cabível sempre que alguém sofre ou está ameaçado de sofrer violência ou coação em sua liberdade de locomoção por ilegalidade ou abuso de poder, conforme o art. 5º, LXVIII, da Constituição. Serve contra prisão ilegal e também contra constrangimento em processo." },
-      { p: "Quando cabe progressão de regime?", r: "Quando cumpridos os requisitos objetivo e subjetivo da Lei de Execução Penal. O percentual de pena exigido varia conforme a natureza do crime, a primariedade e a existência de violência ou grave ameaça, nos termos do art. 112 da LEP, com a redação dada pelo Pacote Anticrime." },
-      { p: "Réu primário sempre responde em liberdade?", r: "Não existe automatismo. A prisão preventiva depende dos requisitos do art. 312 do Código de Processo Penal, e a primariedade é um elemento entre outros que o juiz pondera. Por isso a atuação na custódia importa." },
-      { p: "Como funciona o tribunal do júri?", r: "É o rito dos crimes dolosos contra a vida, previsto no art. 5º, XXXVIII, da Constituição. Ele tem duas fases: a primeira decide se o caso vai a julgamento popular, e a segunda é o julgamento em plenário, diante dos jurados. A defesa começa na primeira, e é nela que boa parte do desfecho se define." },
-      { p: "Medida protetiva da Lei Maria da Penha pode ser revista?", r: "Pode. A medida protetiva de urgência é decidida em cognição sumária, muitas vezes sem oitiva prévia, e admite pedido de revisão ou revogação com elementos novos. Isso vale tanto para quem pede a proteção quanto para quem é atingido por ela." },
-      { p: "O escritório atua em crime econômico e empresarial?", r: "Não. A atuação criminal do escritório é em flagrante, custódia, inquérito, ação penal, tribunal do júri, tráfico de drogas, Lei Maria da Penha e execução criminal. Crime econômico e empresarial não integra esse escopo." },
-    ],
-    relacionadas: ["familia-e-sucessoes"],
   },
   {
     slug: "direito-previdenciario",

@@ -8,7 +8,7 @@ import { JsonLd, breadcrumb } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Áreas de atuação",
   description:
-    "As nove áreas do SSB Advogados: societário, contratos, bancário, marcas, família e sucessões, imobiliário, criminal, previdenciário e concursos públicos.",
+    "As oito áreas do SSB Advogados: societário, contratos, bancário, marcas, família e sucessões, imobiliário, previdenciário e concursos públicos.",
   alternates: { canonical: "/areas-de-atuacao" },
 };
 
@@ -26,7 +26,7 @@ export default function IndiceAreas() {
       <div className="py-14 md:py-20">
         <Rotulo>Áreas de atuação</Rotulo>
         <h1 className="text-h1 md:text-display mb-6 max-w-[20ch]">
-          Nove frentes, cada uma com escopo definido.
+          Oito frentes, cada uma com escopo definido.
         </h1>
         <p className="text-medio text-texto-suave max-w-[60ch]">
           Todas recebem a mesma atenção. Onde há sócio responsável, o nome dele

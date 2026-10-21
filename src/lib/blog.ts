@@ -10,7 +10,7 @@ export type Artigo = {
   titulo: string;
   /** aparece no card e na meta description. Até 155 caracteres. */
   resumo: string;
-  /** slug de uma das nove áreas. Categoria e área são a mesma coisa. */
+  /** slug de uma das oito áreas. Categoria e área são a mesma coisa. */
   categoria: string;
   /** slug do advogado que aprovou e assina. Nunca vazio, nunca "Equipe SSB". */
   autor: string;
@@ -69,7 +69,7 @@ function ler(arquivo: string): Artigo {
       `${arquivo}: autor "${f.autor}" não está cadastrado. Só publica artigo quem está em ADVOGADOS, em src/lib/escritorio.ts.`,
     );
   if (!AREAS.some((a) => a.slug === f.categoria))
-    throw new Error(`${arquivo}: categoria "${f.categoria}" não é uma das nove áreas.`);
+    throw new Error(`${arquivo}: categoria "${f.categoria}" não é uma das oito áreas.`);
 
   return {
     slug,

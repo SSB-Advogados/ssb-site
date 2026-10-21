@@ -1,6 +1,6 @@
 # Editor visual do blog. Escreve direto nos arquivos MDX do repositório,
 # então a validação do build continua valendo: artigo sem autor, com autor
-# fora do cadastro ADVOGADOS ou com categoria fora das nove áreas não sobe.
+# fora do cadastro ADVOGADOS ou com categoria fora das oito áreas não sobe.
 #
 # O repositório existe: SSB-Advogados/ssb-site, privado. Falta conectar a
 # Netlify para que o /admin consiga autenticar.
@@ -55,7 +55,6 @@ collections:
           - { label: "Marcas, patentes e propriedade intelectual", value: "marcas-e-propriedade-intelectual" }
           - { label: "Família e sucessões", value: "familia-e-sucessoes" }
           - { label: "Imobiliário e patrimônio", value: "direito-imobiliario" }
-          - { label: "Criminal", value: "direito-criminal" }
           - { label: "Previdenciário", value: "direito-previdenciario" }
           - { label: "Concursos públicos", value: "concursos-publicos" }
 
@@ -66,7 +65,6 @@ collections:
         options:
           - { label: "Vitor Silvino — OAB/MG 230.955", value: "vitor-silvino" }
           - { label: "Thayane Barbosa — OAB/MG 194.089", value: "thayane-barbosa" }
-          - { label: "Andreza Santos — OAB/MG 210.754", value: "andreza-santos" }
 
       - label: "Publicado em"
         name: "publicadoEm"

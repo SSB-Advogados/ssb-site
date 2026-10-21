@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: `%s | ${ESCRITORIO.marca}`,
   },
   description:
-    "Escritório em Belo Horizonte com atuação em direito empresarial, patrimonial, bancário, criminal e previdenciário. Atendimento remoto em todo o Brasil.",
+    "Escritório em Belo Horizonte com atuação em Direito Bancário, Família, Imobiliário e Empresarial. Atendimento remoto em todo o Brasil.",
   alternates: { types: { "application/rss+xml": "/feed.xml" } },
   // Preview e ambiente local nunca são indexados. Ver docs/decisoes-tecnicas.md.
   robots:

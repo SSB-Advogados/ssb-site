@@ -66,7 +66,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[58%]">
           <Image
             src="/fotos/hero-sofa-2655i.webp"
-            alt="Andreza Santos, Vitor Silvino e Thayane Barbosa no escritório do SSB Advogados"
+            alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 58vw"
@@ -89,9 +89,9 @@ export default function Home() {
             </h1>
             <p className="text-medio text-texto-suave mb-12 max-w-[38ch]">
               O SSB Advogados atende com escuta afetiva e atenção estratégica em
-              direito empresarial, patrimonial, bancário, criminal e
-              previdenciário. O foco é o problema concreto de quem procura o
-              escritório, e o trabalho é orientado a resolvê-lo.
+              Direito Bancário, Família, Imobiliário e Empresarial. O foco é o
+              problema concreto de quem procura o escritório, e o trabalho é
+              orientado a resolvê-lo.
             </p>
             <div className="flex flex-wrap gap-4">
               <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent("Olá, vim pelo site do SSB Advogados. Gostaria de falar com o escritório. (ref: geral)")}`}>
@@ -117,7 +117,7 @@ export default function Home() {
         </div>
       </Secao>
 
-      <Secao rotulo="Como o escritório trabalha" titulo="Nove áreas que conversam entre si.">
+      <Secao rotulo="Como o escritório trabalha" titulo="Oito áreas que conversam entre si.">
         <BlocosNumerados blocos={METODO} />
       </Secao>
 
@@ -144,7 +144,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
       <Secao rotulo="Os sócios" titulo="Quem conduz cada frente.">
-        <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+        <div className="grid gap-6 md:grid-cols-2 md:items-stretch lg:max-w-[52rem]">
           {SOCIOS.map((s) => (
             <div key={s.slug} className="flex h-full flex-col border border-borda rounded-ssb overflow-hidden bg-fundo-elevado">
               <Image

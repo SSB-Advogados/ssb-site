@@ -9,7 +9,7 @@ import { JsonLd, attorneys, breadcrumb, legalService } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "O escritório e os sócios",
   description:
-    "Quem é o SSB Advogados e quem são Vitor Silvino, Thayane Barbosa e Andreza Santos: formação, inscrição na OAB e as áreas de cada um.",
+    "Quem é o SSB Advogados e quem são Vitor Silvino e Thayane Barbosa: formação, inscrição na OAB e as áreas de cada um.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -43,8 +43,8 @@ export default function Sobre() {
             Isso exige alcance. Uma questão familiar toca patrimônio. Uma
             operação de crédito toca contrato e garantia. Uma reorganização
             societária toca a sucessão da família. O escritório reúne
-            empresarial, patrimonial, familiar, bancário, criminal e
-            previdenciário porque essas frentes costumam aparecer juntas.
+            empresarial, patrimonial, familiar, bancário e previdenciário
+            porque essas frentes costumam aparecer juntas.
           </p>
           <p>
             O método é o mesmo em todas elas: entender a situação antes de
@@ -64,7 +64,7 @@ export default function Sobre() {
 
       <Image
         src="/fotos/socios-sofa-2640i.webp"
-        alt="Vitor Silvino, Thayane Barbosa e Andreza Santos no escritório"
+        alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
         width={1800}
         height={1150}
         sizes="(max-width: 1200px) 100vw, 1136px"
@@ -72,7 +72,7 @@ export default function Sobre() {
       />
 
       <Secao rotulo="A equipe" titulo="Multidisciplinar por desenho.">
-        <div className="grid gap-10 md:grid-cols-3 md:items-stretch">
+        <div className="grid gap-10 md:grid-cols-2 md:items-stretch lg:max-w-[52rem]">
           {SOCIOS.map((s) => (
             <div key={s.slug} id={s.slug} className="flex h-full flex-col scroll-mt-24">
               <Image
@@ -140,7 +140,7 @@ export default function Sobre() {
       </Secao>
 
       <Secao rotulo="Trajetória" titulo="De onde vem a experiência.">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2">
           <div>
             <h3 className="text-h3 mb-3">Vitor Silvino</h3>
             <p className="text-texto-suave">
@@ -158,15 +158,6 @@ export default function Sobre() {
               o que envolve partilha com bens em mais de um país, sucessão de
               patrimônio internacional e conflito familiar entre pessoas que
               vivem em jurisdições diferentes.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-h3 mb-3">Andreza Santos</h3>
-            <p className="text-texto-suave">
-              Atua na urgência criminal: flagrante, audiência de custódia,
-              inquérito e tribunal do júri. É a frente em que a primeira decisão
-              acontece em horas, e o que se faz nesse intervalo entra no
-              processo.
             </p>
           </div>
         </div>
