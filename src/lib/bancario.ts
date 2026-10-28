@@ -440,6 +440,13 @@ export const PAGINAS_TEMA: PaginaTema[] = [
   },
 ];
 
+/** Texto do topo das páginas locais. É o mesmo em toda cidade (Vitor,
+ *  28/10/2026), escrito a partir das palavras dele. */
+export const CREDENCIAL_LOCAL =
+  "O Dr. Vitor Silvino atuou por anos dentro de instituição financeira, empresa de crédito e na Serasa Experian. Conhece por dentro como o banco funciona.";
+export const ABERTURA_LOCAL =
+  "Desconto que você não reconhece. Juros que não param de crescer. Empréstimo que você nunca pediu. Consignado que você nunca termina de pagar. Carro ameaçado de busca e apreensão. Conta bloqueada por execução bancária. Nós podemos te ajudar.";
+
 export type PaginaLocal = {
   slug: string;
   cidade: string;
@@ -448,7 +455,6 @@ export type PaginaLocal = {
   title: string;
   description: string;
   h1: string;
-  abertura: string;
   /** parágrafos próprios da cidade: atendimento, foro, contexto */
   local: { titulo: string; paragrafos: string[] };
   faq: Pergunta[];
@@ -462,8 +468,6 @@ export const PAGINAS_LOCAIS: PaginaLocal[] = [
     description:
       "Advogado bancário em Belo Horizonte: descontos indevidos no INSS e na conta, cartão RMC, juros abusivos, golpe do Pix, superendividamento e defesa em execução. Vitor Silvino, OAB/MG 230.955.",
     h1: "Advogado Bancário em Belo Horizonte",
-    abertura:
-      "Desconto que você não reconhece, juros que não param de crescer, conta bloqueada, golpe pelo telefone. O escritório atua do lado de quem é cobrado pelo banco, a partir dos documentos do próprio banco.",
     local: {
       titulo: "Atendimento em Belo Horizonte.",
       paragrafos: [
@@ -487,8 +491,6 @@ export const PAGINAS_LOCAIS: PaginaLocal[] = [
     description:
       "Advogado bancário para quem mora em Nova Lima: descontos indevidos, cartão RMC, fraude, juros abusivos, busca e apreensão, superendividamento e execução. Dr. Vitor Silvino, OAB/MG 230.955.",
     h1: "Advogado Bancário em Nova Lima",
-    abertura:
-      "Para quem mora em Nova Lima e está às voltas com o banco: desconto que não reconhece, empréstimo que não pediu, carro ameaçado de busca e apreensão, conta da empresa bloqueada. O atendimento é feito do escritório em Belo Horizonte, presencial ou à distância.",
     local: {
       titulo: "Atendimento para Nova Lima.",
       paragrafos: [

@@ -80,8 +80,8 @@ export default async function TemaBancario({ params }: PageProps<"/direito-banca
         <h1 className="text-h1 md:text-display mb-8 max-w-[20ch] leading-[1.02]">{t.h1}</h1>
         <p className="text-medio text-texto-suave mb-10 max-w-[56ch]">{t.abertura}</p>
         <div className="flex flex-wrap gap-4">
-          <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent(`Olá, vim pelo site do SSB Advogados. Quero falar sobre ${nome.toLowerCase()}. (ref: ${t.slug})`)}`}>
-            Falar no WhatsApp
+          <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent(`Olá, vim pelo site do SSB Advogados e quero agendar uma consulta sobre ${nome.toLowerCase()}. (ref: ${t.slug})`)}`}>
+            Agendar consulta
           </Botao>
           <Botao href="/contato" variante="secundario">Todos os canais</Botao>
         </div>

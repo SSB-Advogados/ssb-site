@@ -6,7 +6,7 @@ import { Acordeao, Botao, Rotulo } from "@/components/ui";
 import { ChamadaFinal, Secao } from "@/components/blocos";
 import { CardsTemas, ComoFunciona, QuemConduzBancario } from "@/components/bancario";
 import { TopoEscuro } from "@/components/TopoEscuro";
-import { PAGINAS_LOCAIS, localPorSlug } from "@/lib/bancario";
+import { ABERTURA_LOCAL, CREDENCIAL_LOCAL, PAGINAS_LOCAIS, localPorSlug } from "@/lib/bancario";
 import { ESCRITORIO, enderecoEmLinha, nomeExibicao, socioPorSlug } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
 
@@ -65,10 +65,11 @@ export default async function AdvogadoBancarioLocal({ params }: PageProps<"/advo
       >
         <Rotulo>{nomeExibicao(vitor)} · {vitor.oab}</Rotulo>
         <h1 className="text-h1 md:text-display mb-6 leading-[1.02]">{l.h1}</h1>
-        <p className="text-texto-suave mb-10 max-w-[46ch]">{l.abertura}</p>
+        <p className="text-texto mb-5 max-w-[46ch] border-l-2 border-acento pl-4">{CREDENCIAL_LOCAL}</p>
+        <p className="text-texto-suave mb-10 max-w-[46ch]">{ABERTURA_LOCAL}</p>
         <div className="flex flex-wrap gap-4">
-          <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent(`Olá, vim pelo site do SSB Advogados. Preciso de um advogado bancário em ${l.cidade}. (ref: bancario-${l.slug})`)}`}>
-            Falar no WhatsApp
+          <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent(`Olá, vim pelo site do SSB Advogados e quero agendar uma consulta com advogado bancário em ${l.cidade}. (ref: bancario-${l.slug})`)}`}>
+            Agendar consulta
           </Botao>
           <Botao href="/contato" variante="secundario">Todos os canais</Botao>
         </div>
@@ -84,10 +85,10 @@ export default async function AdvogadoBancarioLocal({ params }: PageProps<"/advo
 
       <div className="mx-auto max-w-[1200px] px-5 pt-20 md:px-8 md:pt-28">
         <Image
-          src="/fotos/socios-sofa-2640i.webp"
+          src="/fotos/socios-sofa-2640-recorte.webp"
           alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
-          width={1800}
-          height={1150}
+          width={1350}
+          height={950}
           sizes="(max-width: 1200px) 100vw, 1136px"
           className="foto w-full rounded-ssb object-cover"
         />

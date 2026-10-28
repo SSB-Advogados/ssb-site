@@ -16,8 +16,12 @@ sentado 3214 e detalhe foram recusados.
 Uso: python3 scripts/fotos-perfis.py
 """
 import os
+import sys
 
 from PIL import Image, ImageOps
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from retoque import retocar  # noqa: E402
 
 ORIGEM = "/Users/vitorsilvino/Desktop/CONTEUDO SSB ADVOGADOS/Fotos - Ensaio - Julho26"
 DESTINO = "public/fotos"
@@ -46,6 +50,9 @@ for arquivo, slug, uso, size, espelhar in FOTOS:
     pil = ImageOps.exif_transpose(Image.open(os.path.join(ORIGEM, arquivo))).convert("RGB")
     if espelhar:
         pil = ImageOps.mirror(pil)
+    # Retoque de pele (espinhas) nas fotos do Vitor, a pedido dele (28/10/2026)
+    if slug == "vitor-silvino":
+        pil = retocar(pil)
     nome = f"{slug}-{uso}-{arquivo[4:8]}"
     recortar(pil, size).save(f"{DESTINO}/{nome}.webp", "WEBP", quality=86, method=6)
     print(nome, "espelhada" if espelhar else "sem espelhar (logo)")
