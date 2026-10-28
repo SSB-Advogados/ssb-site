@@ -55,8 +55,9 @@ export type Socio = {
   /** recorte quadrado, 640x640 */
   fotoQuadrada: string;
   /** fotos da página de perfil, geradas por scripts/fotos-perfis.py.
-   *  topo 1500x1875, ambiente e retrato 1000x1500, detalhe 600x750. */
-  fotosPerfil: { topo: string; ambiente: string; retrato: string; detalhe: string };
+   *  topo 1500x1875 e retrato 1000x1500. Sem retrato, a seção de trajetória
+   *  fica só com texto. */
+  fotosPerfil: { topo: string; retrato?: string };
   /** de onde vem a experiência. Usado em /sobre e na página de perfil. */
   trajetoria: string;
   /** como atua em cada frente, um parágrafo por item */
@@ -78,9 +79,6 @@ export const SOCIOS: Socio[] = [
     fotoQuadrada: "/fotos/vitor-silvino-1993b-q.webp",
     fotosPerfil: {
       topo: "/fotos/vitor-silvino-topo-3836.webp",
-      ambiente: "/fotos/vitor-silvino-ambiente-2789.webp",
-      retrato: "/fotos/vitor-silvino-retrato-3214.webp",
-      detalhe: "/fotos/vitor-silvino-detalhe-3839.webp",
     },
     trajetoria:
       "Atuou em grupos empresariais, instituições financeiras, hubs de investimentos, empresa de dados e bureau de crédito. É de onde vem a familiaridade com contrato, com operação de crédito e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
@@ -120,10 +118,7 @@ export const SOCIOS: Socio[] = [
     foto: "/fotos/thayane-barbosa-1630b.webp",
     fotoQuadrada: "/fotos/thayane-barbosa-1630b-q.webp",
     fotosPerfil: {
-      topo: "/fotos/thayane-barbosa-topo-4158.webp",
-      ambiente: "/fotos/thayane-barbosa-ambiente-1717.webp",
-      retrato: "/fotos/thayane-barbosa-retrato-1785.webp",
-      detalhe: "/fotos/thayane-barbosa-detalhe-3315.webp",
+      topo: "/fotos/thayane-barbosa-topo-4136.webp",
     },
     trajetoria:
       "Conduz demandas familiares e patrimoniais dentro e fora do Brasil, o que envolve partilha com bens em mais de um país, sucessão de patrimônio internacional e conflito familiar entre pessoas que vivem em jurisdições diferentes.",

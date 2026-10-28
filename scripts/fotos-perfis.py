@@ -2,17 +2,16 @@
 """
 Gera as fotos das páginas de perfil dos sócios (/sobre/<slug>).
 
-Quatro fotos por sócio, todas sérias, no padrão de retrato de advogado:
+Por sócio:
   topo      retrato grande do topo escuro, 4:5
-  ambiente  corpo inteiro no ambiente do escritório, 2:3 sem recorte
-  retrato   sentado, 2:3 sem recorte, no bloco "quem conduz"
-  detalhe   foto pequena sobreposta ao retrato, 4:5
+  retrato   (opcional) 2:3 sem recorte, na seção de trajetória
 
 Regra de espelhamento: igual à dos retratos, espelhada como o escritório
 aprovou, EXCETO foto com logotipo aparecendo (o painel do SSB ao fundo).
 
-Escolhas do Vitor em 28/10/2026: topo 3836 (olhando para o lado com a logo
-ao fundo) e sentado 3214. A Thayane segue o mesmo critério.
+Escolhas do Vitor em 28/10/2026: topo dele 3836 (olhando para o lado com a
+logo ao fundo); topo da Thayane 4136 (rindo, logo ao fundo). Ambiente,
+sentado 3214 e detalhe foram recusados.
 
 Uso: python3 scripts/fotos-perfis.py
 """
@@ -26,13 +25,7 @@ DESTINO = "public/fotos"
 # (arquivo, slug, uso, tamanho, espelhar)
 FOTOS = [
     ("DSC_38362.jpg", "vitor-silvino", "topo", (1500, 1875), False),  # logo SSB
-    ("DSC_27893.jpg", "vitor-silvino", "ambiente", (1000, 1500), True),
-    ("DSC_3214.jpg", "vitor-silvino", "retrato", (1000, 1500), True),
-    ("DSC_3839.jpg", "vitor-silvino", "detalhe", (600, 750), False),  # logo SSB
-    ("DSC_4158.jpg", "thayane-barbosa", "topo", (1500, 1875), False),  # logo SSB
-    ("DSC_1717.jpg", "thayane-barbosa", "ambiente", (1000, 1500), True),
-    ("DSC_1785.jpg", "thayane-barbosa", "retrato", (1000, 1500), True),
-    ("DSC_33153.jpg", "thayane-barbosa", "detalhe", (600, 750), True),
+    ("DSC_4136.jpg", "thayane-barbosa", "topo", (1500, 1875), False),  # logo SSB, rindo
 ]
 
 

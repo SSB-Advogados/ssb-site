@@ -105,7 +105,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
             <Rotulo>{s.profissao} · {ESCRITORIO.marca}</Rotulo>
             <h1 className="text-h1 md:text-display mb-5 leading-[1.02]">{s.nome}</h1>
             <p className="font-display text-h3 italic text-acento mb-2">{s.nomeCompleto}</p>
-            <p className="text-mini tracking-[0.12em] text-texto-suave mb-8">{s.oab}</p>
+            <p className="text-mini text-texto-suave mb-8">{s.oab}</p>
             <p className="text-texto-suave mb-10 max-w-[48ch]">
               {s.nomeCompleto} é {s.profissao.toLowerCase()} {fem ? "inscrita" : "inscrito"} na{" "}
               {seccional} sob o nº {numeroOab} e {fem ? "sócia" : "sócio"} do {ESCRITORIO.nome},
@@ -121,14 +121,14 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
       </section>
 
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
-        <section className="grid gap-12 py-20 md:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] md:items-center md:gap-20 md:py-28">
+        <section className="py-20 md:py-28">
           <div>
             <Rotulo>Atuação</Rotulo>
             <h2 className="text-h2 mb-8 max-w-[18ch]">Onde atua e como.</h2>
             <div className="mb-12 flex max-w-[60ch] flex-col gap-5 text-texto-suave">
               {s.atuacao.map((p) => <p key={p}>{p}</p>)}
             </div>
-            <div className="grid gap-10 sm:grid-cols-2">
+            <div className="grid gap-10 sm:grid-cols-2 lg:max-w-[52rem]">
               <div>
                 <h3 className={`${subtitulo} mb-3`}>Áreas</h3>
                 <ul className="flex flex-col gap-1">
@@ -154,35 +154,19 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
               </div>
             </div>
           </div>
-          <Image
-            src={s.fotosPerfil.ambiente}
-            alt={`${s.nome} no escritório`}
-            width={1000}
-            height={1500}
-            sizes="(max-width: 768px) 100vw, 384px"
-            className="foto aspect-[2/3] w-full rounded-ssb object-cover"
-          />
         </section>
 
-        <section className="grid gap-16 border-t border-borda py-20 md:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] md:items-center md:gap-24 md:py-28">
-          <div className="relative mr-10 md:mr-0">
+        <section className={`grid gap-16 border-t border-borda py-20 md:items-center md:gap-24 md:py-28 ${s.fotosPerfil.retrato ? "md:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]" : ""}`}>
+          {s.fotosPerfil.retrato && (
             <Image
               src={s.fotosPerfil.retrato}
               alt={`Retrato de ${s.nomeCompleto}`}
               width={1000}
               height={1500}
-              sizes="(max-width: 768px) 85vw, 416px"
+              sizes="(max-width: 768px) 100vw, 416px"
               className="foto aspect-[2/3] w-full rounded-ssb object-cover"
             />
-            <Image
-              src={s.fotosPerfil.detalhe}
-              alt=""
-              width={600}
-              height={750}
-              sizes="160px"
-              className="foto absolute -bottom-8 -right-10 aspect-[4/5] w-32 rounded-ssb border-4 border-fundo object-cover shadow-xl md:-right-14 md:w-40"
-            />
-          </div>
+          )}
           <div>
             <Rotulo>Trajetória</Rotulo>
             <h2 className="text-h2 mb-8 max-w-[18ch]">De onde vem a experiência.</h2>

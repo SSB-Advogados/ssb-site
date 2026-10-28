@@ -7,9 +7,9 @@ type Tema = "claro" | "escuro";
 /**
  * Alterna entre claro e escuro.
  *
- * A escolha fica no localStorage. Na primeira visita, vale a preferência
- * do sistema operacional. Quem nunca escolheu e usa o sistema em claro
- * recebe o site claro, o que é o comportamento esperado.
+ * A escolha fica no localStorage. Na primeira visita o site abre sempre no
+ * escuro, independente do sistema operacional: decisão do Vitor em
+ * 28/10/2026 ("prefiro o site escuro"). O claro só vale para quem escolher.
  */
 const ouvintes = new Set<() => void>();
 
@@ -77,4 +77,4 @@ export function BotaoTema() {
  * Aplica o tema antes da primeira pintura. Sem isso, quem escolheu claro
  * vê o site escuro por um instante a cada carregamento.
  */
-export const scriptDoTema = `(function(){try{var t=localStorage.getItem('ssb-tema');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'claro':'escuro';}if(t==='claro'){document.documentElement.dataset.tema='claro';}}catch(e){}})();`;
+export const scriptDoTema = `(function(){try{var t=localStorage.getItem('ssb-tema');if(t==='claro'){document.documentElement.dataset.tema='claro';}}catch(e){}})();`;
