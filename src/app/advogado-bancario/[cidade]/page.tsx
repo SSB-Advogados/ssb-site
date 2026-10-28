@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Acordeao, Botao, Rotulo } from "@/components/ui";
 import { ChamadaFinal, Secao } from "@/components/blocos";
 import { CardsTemas, ComoFunciona, QuemConduzBancario } from "@/components/bancario";
 import { TopoEscuro } from "@/components/TopoEscuro";
 import { PAGINAS_LOCAIS, localPorSlug } from "@/lib/bancario";
-import { ESCRITORIO, enderecoEmLinha, socioPorSlug } from "@/lib/escritorio";
+import { ESCRITORIO, enderecoEmLinha, nomeExibicao, socioPorSlug } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
 
 /** Página local do bancário: "Advogado Bancário em <cidade>". */
@@ -57,11 +59,11 @@ export default async function AdvogadoBancarioLocal({ params }: PageProps<"/advo
       ]} />
 
       <TopoEscuro
-        foto={vitor.fotosPerfil.topo}
+        foto={l.foto ?? vitor.fotosPerfil.topo}
         alt={`${vitor.nomeCompleto}, advogado bancário em ${l.cidade}`}
         trilha={[trilha[0], trilha[1], { nome: l.cidade }]}
       >
-        <Rotulo>{vitor.nome} · {vitor.oab}</Rotulo>
+        <Rotulo>{nomeExibicao(vitor)} · {vitor.oab}</Rotulo>
         <h1 className="text-h1 md:text-display mb-6 leading-[1.02]">{l.h1}</h1>
         <p className="text-texto-suave mb-10 max-w-[46ch]">{l.abertura}</p>
         <div className="flex flex-wrap gap-4">
@@ -80,6 +82,20 @@ export default async function AdvogadoBancarioLocal({ params }: PageProps<"/advo
 
       <ComoFunciona />
 
+      <div className="mx-auto max-w-[1200px] px-5 pt-20 md:px-8 md:pt-28">
+        <Image
+          src="/fotos/socios-sofa-2640i.webp"
+          alt="Thayane Barbosa e Vitor Silvino, sócios do SSB Advogados"
+          width={1800}
+          height={1150}
+          sizes="(max-width: 1200px) 100vw, 1136px"
+          className="foto w-full rounded-ssb object-cover"
+        />
+        <p className="mt-4 text-mini text-texto-suave">
+          {vitor.nome} e Thayane Barbosa, sócios do {ESCRITORIO.marca}.
+        </p>
+      </div>
+
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
         <QuemConduzBancario />
 
@@ -89,6 +105,11 @@ export default async function AdvogadoBancarioLocal({ params }: PageProps<"/advo
             <p className="border-l-2 border-acento bg-fundo-profundo px-5 py-4 text-mini">
               {enderecoEmLinha()}
             </p>
+            {PAGINAS_LOCAIS.filter((o) => o.slug !== l.slug).map((o) => (
+              <Link key={o.slug} href={`/advogado-bancario/${o.slug}`} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
+                {o.h1}
+              </Link>
+            ))}
           </div>
         </Secao>
 

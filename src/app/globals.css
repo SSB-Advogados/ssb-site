@@ -105,8 +105,8 @@ body {
   color: var(--texto);
   font-family: var(--font-texto);
   font-size: var(--text-base);
-  line-height: 1.7;
-  font-weight: 300;
+  line-height: 1.65;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

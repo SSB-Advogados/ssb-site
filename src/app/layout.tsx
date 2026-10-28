@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
@@ -18,10 +18,13 @@ const display = Cormorant_Garamond({
   display: "swap",
 });
 
-const texto = Montserrat({
+/* Texto corrido em DM Sans 400. A Montserrat 300 que estava aqui era fina
+   demais e difícil de ler no escuro (Vitor, 28/10/2026). A DM Sans é a do
+   site que ele trouxe de referência. */
+const texto = DM_Sans({
   variable: "--fonte-texto",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 

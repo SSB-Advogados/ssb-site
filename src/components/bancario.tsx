@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Secao } from "@/components/blocos";
 import { TEMAS, hrefTema } from "@/lib/bancario";
-import { socioPorSlug } from "@/lib/escritorio";
+import { nomeExibicao, socioPorSlug } from "@/lib/escritorio";
 
 /** Cards dos temas bancários. Tema sem página ainda aparece sem link. */
 export function CardsTemas({ excluir }: { excluir?: string }) {
@@ -11,7 +12,8 @@ export function CardsTemas({ excluir }: { excluir?: string }) {
       {temas.map((t) => {
         const corpo = (
           <>
-            <h3 className="font-display text-h3 leading-snug mb-3">{t.nome}</h3>
+            <p className="text-micro uppercase tracking-[0.14em] text-acento mb-4">{t.nome}</p>
+            <h3 className="font-display text-h3 leading-snug mb-4">{t.dor}</h3>
             <p className="text-mini text-texto-suave">{t.resumo}</p>
             {t.temPagina && (
               <span className="mt-5 inline-block text-mini text-acento">Entenda o caso →</span>
@@ -30,6 +32,15 @@ export function CardsTemas({ excluir }: { excluir?: string }) {
           </li>
         );
       })}
+      {/* Fecha a grade (7 temas em 3 colunas) e atende quem não se viu nos cards */}
+      <li className="bg-fundo-elevado">
+        <Link href="/contato" className="flex h-full flex-col justify-center p-7 transition-colors hover:bg-fundo">
+          <p className="text-micro uppercase tracking-[0.14em] text-acento mb-4">Outro problema com o banco</p>
+          <h3 className="font-display text-h3 leading-snug mb-4">“Não achei o meu caso aqui.”</h3>
+          <p className="text-mini text-texto-suave">Conte o que está acontecendo. A análise começa pelos seus documentos.</p>
+          <span className="mt-5 inline-block text-mini text-acento">Falar com o escritório →</span>
+        </Link>
+      </li>
     </ul>
   );
 }
@@ -70,7 +81,17 @@ export function QuemConduzBancario() {
     <Secao rotulo="Quem conduz o seu caso">
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
         <div>
-          <h2 className="text-h2 mb-2">{s.nome}</h2>
+          {s.fotosPerfil.retrato && (
+            <Image
+              src={s.fotosPerfil.retrato}
+              alt={`Retrato de ${s.nomeCompleto}`}
+              width={1000}
+              height={1250}
+              sizes="(max-width: 768px) 100vw, 360px"
+              className="foto mb-6 aspect-[4/5] w-full max-w-[22rem] rounded-ssb object-cover"
+            />
+          )}
+          <h2 className="text-h2 mb-2">{nomeExibicao(s)}</h2>
           <p className="text-mini text-texto-suave mb-1">{s.nomeCompleto}</p>
           <p className="text-mini text-texto-suave">{s.oab}</p>
         </div>

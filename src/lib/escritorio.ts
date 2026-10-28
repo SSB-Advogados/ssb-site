@@ -42,6 +42,9 @@ export type Socio = {
   nomeCompleto: string;
   /** "Advogado" ou "Advogada" */
   profissao: string;
+  /** tratamento exibido antes do nome nos títulos do site ("Dr."). Só no
+   *  site: documento e assinatura usam o nome completo, sem tratamento. */
+  tratamento?: string;
   oab: string;
   instagram: string;
   /** perfil pessoal no LinkedIn. Só é renderizado quando preenchido. */
@@ -55,7 +58,7 @@ export type Socio = {
   /** recorte quadrado, 640x640 */
   fotoQuadrada: string;
   /** fotos da página de perfil, geradas por scripts/fotos-perfis.py.
-   *  topo 1500x1875 e retrato 1000x1500. Sem retrato, a seção de trajetória
+   *  topo 1500x1875 e retrato 1000x1250. Sem retrato, a seção de trajetória
    *  fica só com texto. */
   fotosPerfil: { topo: string; retrato?: string };
   /** de onde vem a experiência. Usado em /sobre e na página de perfil. */
@@ -84,6 +87,7 @@ export const SOCIOS: Socio[] = [
     nome: "Vitor Silvino",
     nomeCompleto: "Vitor Henrique Santos Silvino",
     profissao: "Advogado",
+    tratamento: "Dr.", // pedido do Vitor em 28/10/2026
     oab: "OAB/MG 230.955",
 
     instagram: "https://www.instagram.com/vitorsilvino.adv/",
@@ -92,6 +96,7 @@ export const SOCIOS: Socio[] = [
     fotoQuadrada: "/fotos/vitor-silvino-1993b-q.webp",
     fotosPerfil: {
       topo: "/fotos/vitor-silvino-topo-3836.webp",
+      retrato: "/fotos/vitor-silvino-retrato-2806.webp",
     },
     trajetoria:
       "Atuou no Grupo BMG (Banco BMG) e na Serasa Experian, além de grupos empresariais e hubs de investimentos. Viu por dentro como o banco concede o crédito, averba o consignado, registra a dívida e cobra. É de onde vem a familiaridade com contrato, com desconto em folha e em benefício e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
@@ -197,6 +202,9 @@ export const AREAS: Area[] = [
   { slug: "direito-previdenciario", nome: "Previdenciário", socios: null },
   { slug: "concursos-publicos", nome: "Concursos públicos", socios: null },
 ];
+
+/** Nome como aparece em título: "Dr. Vitor Silvino". */
+export const nomeExibicao = (s: Socio) => (s.tratamento ? `${s.tratamento} ${s.nome}` : s.nome);
 
 export const socioPorSlug = (slug: string) =>
   SOCIOS.find((s) => s.slug === slug);

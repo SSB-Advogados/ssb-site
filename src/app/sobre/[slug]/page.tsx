@@ -6,7 +6,7 @@ import { Botao, Rotulo } from "@/components/ui";
 import { TopoEscuro } from "@/components/TopoEscuro";
 import { ChamadaFinal, Secao } from "@/components/blocos";
 import { autorDe, dataPorExtenso, todosOsArtigos } from "@/lib/blog";
-import { AREAS, ESCRITORIO, SOCIOS, socioPorSlug } from "@/lib/escritorio";
+import { AREAS, ESCRITORIO, SOCIOS, nomeExibicao, socioPorSlug } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, legalService, perfil, pessoa } from "@/lib/schema";
 
 /**
@@ -91,7 +91,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
         trilha={[{ nome: "Início", href: "/" }, { nome: "Sobre", href: "/sobre" }, { nome: s.nome }]}
       >
         <Rotulo>{s.profissao} · {ESCRITORIO.marca}</Rotulo>
-        <h1 className="text-h1 md:text-display mb-4 leading-[1.02]">{s.nome}</h1>
+        <h1 className="text-h1 md:text-display mb-4 leading-[1.02]">{nomeExibicao(s)}</h1>
         {s.foco && (
           <p className="font-display text-h2 leading-tight text-acento mb-5">{s.foco.titulo}</p>
         )}
@@ -155,9 +155,9 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
               src={s.fotosPerfil.retrato}
               alt={`Retrato de ${s.nomeCompleto}`}
               width={1000}
-              height={1500}
+              height={1250}
               sizes="(max-width: 768px) 100vw, 416px"
-              className="foto aspect-[2/3] w-full rounded-ssb object-cover"
+              className="foto aspect-[4/5] w-full rounded-ssb object-cover"
             />
           )}
           <div>
@@ -194,7 +194,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
           </Secao>
         )}
 
-        <ChamadaFinal titulo={`Fale com ${s.nome}.`} refArea={`perfil-${s.slug}`} />
+        <ChamadaFinal titulo={`Fale com ${nomeExibicao(s)}.`} refArea={`perfil-${s.slug}`} />
       </div>
     </>
   );
