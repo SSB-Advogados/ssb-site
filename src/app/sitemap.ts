@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { categoriasComArtigo, todosOsArtigos } from "@/lib/blog";
+import { PAGINAS_LOCAIS, PAGINAS_TEMA, hrefTema } from "@/lib/bancario";
 import { AREAS, ESCRITORIO, SOCIOS } from "@/lib/escritorio";
 
 // Gerado no build: o site é exportado estático.
@@ -20,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...SOCIOS.map((s) => ({
       url: `${base}/sobre/${s.slug}/`,
+      lastModified: agora,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...PAGINAS_LOCAIS.map((l) => ({
+      url: `${base}/advogado-bancario/${l.slug}/`,
+      lastModified: agora,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
+    ...PAGINAS_TEMA.map((t) => ({
+      url: `${base}${hrefTema(t.slug)}/`,
       lastModified: agora,
       changeFrequency: "monthly" as const,
       priority: 0.8,

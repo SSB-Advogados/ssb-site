@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Botao, Breadcrumb, Rotulo } from "@/components/ui";
+import { Botao, Rotulo } from "@/components/ui";
+import { TopoEscuro } from "@/components/TopoEscuro";
 import { ChamadaFinal, Secao } from "@/components/blocos";
 import { autorDe, dataPorExtenso, todosOsArtigos } from "@/lib/blog";
 import { AREAS, ESCRITORIO, SOCIOS, socioPorSlug } from "@/lib/escritorio";
@@ -35,10 +36,11 @@ export async function generateMetadata({ params }: PageProps<"/sobre/[slug]">): 
   const { slug } = await params;
   const s = socioPorSlug(slug);
   if (!s) return {};
-  const areas = listaEmTexto(areasDe(s.areas).map((a) => a.nome.toLowerCase()));
+  const areas = listaEmTexto(areasDe(s.foco?.areas ?? s.areas).map((a) => a.nome.toLowerCase()));
   const socio = s.profissao === "Advogada" ? "sócia" : "sócio";
+  const cargo = s.foco?.cargo ?? s.profissao.toLowerCase();
   return {
-    title: `${s.nomeCompleto}, ${s.profissao.toLowerCase()} em ${ESCRITORIO.endereco.cidade}`,
+    title: `${s.nomeCompleto}, ${cargo} em ${ESCRITORIO.endereco.cidade}`,
     description: `${s.nomeCompleto} (${s.nome}), ${s.oab}, ${socio} do ${ESCRITORIO.marca} em ${ESCRITORIO.endereco.cidade}. Atuação em ${areas}.`,
     alternates: { canonical: `/sobre/${s.slug}` },
     openGraph: {
@@ -58,8 +60,14 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
   const s = socioPorSlug(slug);
   if (!s) notFound();
 
-  const areas = areasDe(s.areas);
-  const artigos = todosOsArtigos().filter((a) => autorDe(a).slug === s.slug);
+  // Com foco (Vitor: só bancário), o perfil mostra apenas aquela frente,
+  // inclusive nos artigos listados.
+  const areas = areasDe(s.foco?.areas ?? s.areas);
+  const atuacao = s.foco?.atuacao ?? s.atuacao;
+  const destaques = s.foco?.destaques ?? s.destaques;
+  const artigos = todosOsArtigos().filter(
+    (a) => autorDe(a).slug === s.slug && areas.some((x) => x.slug === a.categoria),
+  );
   const fem = s.profissao === "Advogada";
   const numeroOab = s.oab.match(/[\d.]+$/)![0];
   const seccional = s.oab.replace(/ [\d.]+$/, "");
@@ -77,48 +85,33 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
         ]),
       ]} />
 
-      {/* Topo escuro. No celular a foto vem primeiro e escurece para baixo;
-          a partir do md ela ocupa a metade direita e escurece para a esquerda. */}
-      <section className="faixa-escura relative isolate overflow-hidden">
-        <div className="relative aspect-[4/5] w-full md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[56%]">
-          <Image
-            src={s.fotosPerfil.topo}
-            alt={`${s.nomeCompleto}, ${s.profissao.toLowerCase()} do ${ESCRITORIO.marca}`}
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 56vw"
-            className="foto object-cover object-[60%_20%]"
-          />
-          <div aria-hidden className="absolute inset-x-0 -bottom-px top-0 bg-gradient-to-t from-fundo-profundo via-transparent to-transparent md:hidden" />
-          <div aria-hidden className="absolute -left-px inset-y-0 hidden w-1/2 bg-gradient-to-r from-fundo-profundo via-fundo-profundo/70 to-transparent md:block" />
+      <TopoEscuro
+        foto={s.fotosPerfil.topo}
+        alt={`${s.nomeCompleto}, ${(s.foco?.titulo ?? s.profissao).toLowerCase()}`}
+        trilha={[{ nome: "Início", href: "/" }, { nome: "Sobre", href: "/sobre" }, { nome: s.nome }]}
+      >
+        <Rotulo>{s.profissao} · {ESCRITORIO.marca}</Rotulo>
+        <h1 className="text-h1 md:text-display mb-4 leading-[1.02]">{s.nome}</h1>
+        {s.foco && (
+          <p className="font-display text-h2 leading-tight text-acento mb-5">{s.foco.titulo}</p>
+        )}
+        <p className="text-texto mb-1">{s.nomeCompleto}</p>
+        <p className="text-mini text-texto-suave mb-8">{s.oab}</p>
+        <p className="text-texto-suave mb-10 max-w-[48ch]">
+          {s.nomeCompleto} é {s.profissao.toLowerCase()} {fem ? "inscrita" : "inscrito"} na{" "}
+          {seccional} sob o nº {numeroOab} e {fem ? "sócia" : "sócio"} do {ESCRITORIO.nome},
+          em {ESCRITORIO.endereco.cidade}. Atua em{" "}
+          {listaEmTexto(areas.map((a) => a.nome.toLowerCase()))}.
+        </p>
+        <div className="flex flex-wrap gap-4">
+          {s.foco ? (
+            <Botao href={s.foco.pagina.href}>{s.foco.pagina.nome}</Botao>
+          ) : (
+            <Botao href="/contato">Fale com o escritório</Botao>
+          )}
+          <Botao href={s.instagram} variante="secundario">Instagram</Botao>
         </div>
-
-        <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
-          <div className="-mt-24 pb-16 md:mt-0 md:flex md:min-h-[46rem] md:w-[44%] md:flex-col md:justify-center md:py-24">
-            <div className="mb-10 hidden md:block">
-              <Breadcrumb trilha={[
-                { nome: "Início", href: "/" },
-                { nome: "Sobre", href: "/sobre" },
-                { nome: s.nome },
-              ]} />
-            </div>
-            <Rotulo>{s.profissao} · {ESCRITORIO.marca}</Rotulo>
-            <h1 className="text-h1 md:text-display mb-5 leading-[1.02]">{s.nome}</h1>
-            <p className="font-display text-h3 italic text-acento mb-2">{s.nomeCompleto}</p>
-            <p className="text-mini text-texto-suave mb-8">{s.oab}</p>
-            <p className="text-texto-suave mb-10 max-w-[48ch]">
-              {s.nomeCompleto} é {s.profissao.toLowerCase()} {fem ? "inscrita" : "inscrito"} na{" "}
-              {seccional} sob o nº {numeroOab} e {fem ? "sócia" : "sócio"} do {ESCRITORIO.nome},
-              em {ESCRITORIO.endereco.cidade}. Atua em{" "}
-              {listaEmTexto(areas.map((a) => a.nome.toLowerCase()))}.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Botao href="/contato">Fale com o escritório</Botao>
-              <Botao href={s.instagram} variante="secundario">Instagram</Botao>
-            </div>
-          </div>
-        </div>
-      </section>
+      </TopoEscuro>
 
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
         <section className="py-20 md:py-28">
@@ -126,7 +119,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
             <Rotulo>Atuação</Rotulo>
             <h2 className="text-h2 mb-8 max-w-[18ch]">Onde atua e como.</h2>
             <div className="mb-12 flex max-w-[60ch] flex-col gap-5 text-texto-suave">
-              {s.atuacao.map((p) => <p key={p}>{p}</p>)}
+              {atuacao.map((p) => <p key={p}>{p}</p>)}
             </div>
             <div className="grid gap-10 sm:grid-cols-2 lg:max-w-[52rem]">
               <div>
@@ -144,7 +137,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
               <div>
                 <h3 className={`${subtitulo} mb-3`}>Frentes</h3>
                 <ul className="flex flex-col gap-2">
-                  {s.destaques.map((d) => (
+                  {destaques.map((d) => (
                     <li key={d} className="flex gap-2 text-mini text-texto-suave">
                       <span aria-hidden className="text-acento">—</span>
                       <span>{d}</span>

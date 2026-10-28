@@ -60,6 +60,19 @@ export type Socio = {
   fotosPerfil: { topo: string; retrato?: string };
   /** de onde vem a experiência. Usado em /sobre e na página de perfil. */
   trajetoria: string;
+  /** recorte da página de perfil. Quando existe, o perfil mostra só esta
+   *  frente (título de destaque, áreas, texto e frentes próprios), sem mexer
+   *  em `areas`, que segue valendo para /sobre e para "Quem conduz". */
+  foco?: {
+    titulo: string;
+    /** como aparece no title da página: "advogado bancário" */
+    cargo: string;
+    /** página de serviço para onde o perfil aponta */
+    pagina: { href: string; nome: string };
+    areas: string[];
+    atuacao: string[];
+    destaques: string[];
+  };
   /** como atua em cada frente, um parágrafo por item */
   atuacao: string[];
   formacao: string[];
@@ -81,7 +94,25 @@ export const SOCIOS: Socio[] = [
       topo: "/fotos/vitor-silvino-topo-3836.webp",
     },
     trajetoria:
-      "Atuou em grupos empresariais, instituições financeiras, hubs de investimentos, empresa de dados e bureau de crédito. É de onde vem a familiaridade com contrato, com operação de crédito e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
+      "Atuou no Grupo BMG (Banco BMG) e na Serasa Experian, além de grupos empresariais e hubs de investimentos. Viu por dentro como o banco concede o crédito, averba o consignado, registra a dívida e cobra. É de onde vem a familiaridade com contrato, com desconto em folha e em benefício e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
+    foco: {
+      titulo: "Advogado Bancário em Belo Horizonte",
+      cargo: "advogado bancário",
+      pagina: { href: "/advogado-bancario/belo-horizonte", nome: "Advogado bancário em Belo Horizonte" },
+      areas: ["direito-bancario"],
+      atuacao: [
+        "Atua do lado de quem é cobrado pelo banco: pessoa física com desconto que não reconhece no salário, na aposentadoria ou na conta, e empresa, sócio ou avalista executado por cédula de crédito bancário.",
+        "No consignado, confere o que foi averbado contra o que foi contratado: cartão RMC ou RCC no lugar de empréstimo, margem tomada sem pedido, seguro e associação descontados sem autorização, portabilidade que ninguém pediu.",
+        "Na execução e na dívida com o banco, cuida do desbloqueio de conta, da defesa em embargos e da negociação, sempre a partir dos documentos do próprio banco: contrato, extrato e demonstrativo.",
+      ],
+      destaques: [
+        "Descontos indevidos no benefício e na conta",
+        "Cartão consignado RMC e RCC",
+        "Juros abusivos e revisão de contrato",
+        "Golpe do Pix e fraude bancária",
+        "Defesa em execução e desbloqueio de conta",
+      ],
+    },
     atuacao: [
       "No direito bancário, atua na defesa de empresas, sócios e avalistas em execução de cédula de crédito bancário, no desbloqueio de conta e na negociação de dívida com o banco antes e durante o processo.",
       "No empresarial, cuida de acordo de sócios, entrada e saída de sócio e dos contratos que sustentam a operação: prestação de serviço, confidencialidade, cessão e licenciamento.",

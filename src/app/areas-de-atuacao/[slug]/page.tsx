@@ -5,6 +5,7 @@ import { Acordeao, Botao, Breadcrumb, Rotulo } from "@/components/ui";
 import {
   BlocosNumerados, ChamadaFinal, Escopo, QuemConduz, Secao,
 } from "@/components/blocos";
+import { CardsTemas } from "@/components/bancario";
 import { CONTEUDO } from "@/lib/areas-conteudo";
 import { AREAS, socioPorSlug } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, faqPage, servico } from "@/lib/schema";
@@ -75,6 +76,21 @@ export default async function PaginaArea({ params }: PageProps<"/areas-de-atuaca
       <Secao rotulo="Como atuamos" titulo={a.atuacao.titulo}>
         <BlocosNumerados blocos={a.atuacao.blocos} />
       </Secao>
+
+      {a.slug === "direito-bancario" && (
+        <Secao rotulo="Pessoa física" titulo="Desconto, juros, cartão consignado, golpe.">
+          <p className="text-texto-suave mb-10 max-w-[62ch]">
+            Além da defesa de empresas, o escritório atua para quem é cobrado pelo banco como
+            consumidor. Os temas mais comuns estão abaixo.
+          </p>
+          <CardsTemas />
+          <p className="mt-10">
+            <Link href="/advogado-bancario/belo-horizonte" className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
+              Advogado bancário em Belo Horizonte
+            </Link>
+          </p>
+        </Secao>
+      )}
 
       <QuemConduz socios={socios} />
 
