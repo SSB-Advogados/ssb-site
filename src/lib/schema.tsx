@@ -49,7 +49,7 @@ export const pessoa = (s: Socio) => ({
   alternateName: s.nomeCompleto,
   jobTitle: s.profissao,
   identifier: s.oab,
-  image: url(s.fotoPerfil),
+  image: url(s.fotosPerfil.topo),
   worksFor: { "@id": url("/#escritorio") },
   workLocation: { "@type": "City", name: ESCRITORIO.endereco.cidade },
   knowsAbout: s.areas.map((slug) => AREAS.find((a) => a.slug === slug)!.nome),

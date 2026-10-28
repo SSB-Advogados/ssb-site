@@ -48,6 +48,24 @@
   --rebaixar-foto: 1;
 }
 
+/* Faixa escura fixa, que não acompanha o tema. Usada no topo das páginas
+   de perfil: o retrato sério pede fundo escuro nos dois modos. Repete os
+   valores do modo escuro de :root. */
+.faixa-escura {
+  --fundo: var(--ssb-eclipse);
+  --fundo-elevado: #252E3D;
+  --fundo-profundo: #17191B;
+  --texto: var(--ssb-linho);
+  --texto-suave: #B4B6B9;
+  --acento: var(--ssb-argila);
+  --borda: rgba(184, 164, 125, 0.20);
+  --borda-forte: rgba(184, 164, 125, 0.42);
+  --foco: var(--ssb-argila);
+  --rebaixar-foto: 0.98;
+  background: var(--fundo-profundo);
+  color: var(--texto);
+}
+
 @theme inline {
   --color-fundo: var(--fundo);
   --color-fundo-elevado: var(--fundo-elevado);
