@@ -42,6 +42,9 @@ export type Socio = {
   nomeCompleto: string;
   /** "Advogado" ou "Advogada" */
   profissao: string;
+  /** a página /sobre/<slug> só é gerada quando o sócio aprovou o texto.
+   *  Sem ela, os links caem no bloco do sócio em /sobre. */
+  perfilPublicado: boolean;
   /** tratamento exibido antes do nome nos títulos do site ("Dr."). Só no
    *  site: documento e assinatura usam o nome completo, sem tratamento. */
   tratamento?: string;
@@ -87,6 +90,7 @@ export const SOCIOS: Socio[] = [
     nome: "Vitor Silvino",
     nomeCompleto: "Vitor Henrique Santos Silvino",
     profissao: "Advogado",
+    perfilPublicado: true,
     tratamento: "Dr.", // pedido do Vitor em 28/10/2026
     oab: "OAB/MG 230.955",
 
@@ -147,6 +151,7 @@ export const SOCIOS: Socio[] = [
     nome: "Thayane Barbosa",
     nomeCompleto: "Thayane Cristine Barbosa Teixeira",
     profissao: "Advogada",
+    perfilPublicado: false, // Vitor, 28/10/2026: a Thayane precisa analisar antes
     oab: "OAB/MG 194.089",
 
     instagram: "https://www.instagram.com/thayanebarbosa.adv/",
@@ -185,23 +190,31 @@ export const SOCIOS: Socio[] = [
 export type Area = {
   slug: string;
   nome: string;
+  /** como a área entra numa frase. O nome de título já tem "e" ("Imobiliário
+   *  e patrimônio"), e listar vários deles virava "e ... e ... e". */
+  prosa: string;
   /** null quando a área não tem sócio titular. O bloco "Quem conduz"
    *  não é renderizado nesse caso, e não se inventa responsável. */
   socios: string[] | null;
 };
 
 export const AREAS: Area[] = [
-  { slug: "direito-societario", nome: "Societário e acordo de sócios", socios: ["vitor-silvino"] },
-  { slug: "contratos-empresariais", nome: "Contratos empresariais", socios: ["vitor-silvino"] },
-  { slug: "direito-bancario", nome: "Bancário e defesa em execução", socios: ["vitor-silvino", "thayane-barbosa"] },
-  { slug: "marcas-e-propriedade-intelectual", nome: "Marcas, patentes e propriedade intelectual", socios: ["vitor-silvino"] },
-  { slug: "familia-e-sucessoes", nome: "Família e sucessões", socios: ["thayane-barbosa"] },
-  { slug: "direito-imobiliario", nome: "Imobiliário e patrimônio", socios: ["thayane-barbosa"] },
+  { slug: "direito-societario", nome: "Societário e acordo de sócios", prosa: "direito societário", socios: ["vitor-silvino"] },
+  { slug: "contratos-empresariais", nome: "Contratos empresariais", prosa: "contratos empresariais", socios: ["vitor-silvino"] },
+  { slug: "direito-bancario", nome: "Bancário e defesa em execução", prosa: "direito bancário", socios: ["vitor-silvino", "thayane-barbosa"] },
+  { slug: "marcas-e-propriedade-intelectual", nome: "Marcas, patentes e propriedade intelectual", prosa: "propriedade intelectual", socios: ["vitor-silvino"] },
+  { slug: "familia-e-sucessoes", nome: "Família e sucessões", prosa: "família e sucessões", socios: ["thayane-barbosa"] },
+  { slug: "direito-imobiliario", nome: "Imobiliário e patrimônio", prosa: "direito imobiliário", socios: ["thayane-barbosa"] },
   // Previdenciário é conduzido por advogada associada. Nome e OAB pendentes,
   // e falta decidir se ela aparece no site. Até lá, sem "Quem conduz".
-  { slug: "direito-previdenciario", nome: "Previdenciário", socios: null },
-  { slug: "concursos-publicos", nome: "Concursos públicos", socios: null },
+  { slug: "direito-previdenciario", nome: "Previdenciário", prosa: "direito previdenciário", socios: null },
+  { slug: "concursos-publicos", nome: "Concursos públicos", prosa: "concursos públicos", socios: null },
 ];
+
+/** Link para o perfil do sócio: a página própria, ou o bloco dele em /sobre
+ *  enquanto a página não está publicada. */
+export const hrefPerfil = (slug: string) =>
+  SOCIOS.find((s) => s.slug === slug)?.perfilPublicado ? `/sobre/${slug}` : `/sobre#${slug}`;
 
 /** Nome como aparece em título: "Dr. Vitor Silvino". */
 export const nomeExibicao = (s: Socio) => (s.tratamento ? `${s.tratamento} ${s.nome}` : s.nome);

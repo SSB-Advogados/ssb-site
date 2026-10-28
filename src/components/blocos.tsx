@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Botao, Rotulo } from "@/components/ui";
-import { ESCRITORIO, type Socio } from "@/lib/escritorio";
+import { ESCRITORIO, type Socio, hrefPerfil } from "@/lib/escritorio";
 
 export function Secao({
   rotulo, titulo, intro, children, className = "",
@@ -55,11 +55,11 @@ export function QuemConduz({ socios }: { socios: Socio[] }) {
             />
             <div>
             <h3 className="text-h3">
-              <Link href={`/sobre/${s.slug}`} className="hover:text-acento">{s.nome}</Link>
+              <Link href={hrefPerfil(s.slug)} className="hover:text-acento">{s.nome}</Link>
             </h3>
             <p className="text-mini text-texto-suave mt-1">{s.oab}</p>
             <p className="mt-4 text-mini">
-              <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
+              <Link href={hrefPerfil(s.slug)} className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
                 Perfil completo
               </Link>
               <span aria-hidden className="mx-2 text-texto-suave">·</span>

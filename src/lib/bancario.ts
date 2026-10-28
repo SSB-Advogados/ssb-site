@@ -406,7 +406,7 @@ export const PAGINAS_TEMA: PaginaTema[] = [
       titulo: "O que fazer assim que souber.",
       passos: [
         "Descubra o número do processo pelo extrato do bloqueio ou pela citação.",
-        "Anote a data da citação: o prazo dos embargos é de quinze dias e corre a partir da juntada do mandado.",
+        "Anote a data da citação: o prazo dos embargos é de quinze dias e, em regra, corre a partir da juntada do comprovante da citação aos autos.",
         "Separe a cédula de crédito, os aditivos, os extratos da conta e qualquer renegociação feita.",
         "Não assine confissão de dívida antes de conferir os números.",
       ],
@@ -430,7 +430,7 @@ export const PAGINAS_TEMA: PaginaTema[] = [
       "Renegociações e acordos anteriores, se houver",
     ],
     faq: [
-      { p: "Qual o prazo para me defender na execução?", r: "Os embargos à execução têm prazo de quinze dias, contados da juntada do mandado de citação aos autos (art. 915 do Código de Processo Civil)." },
+      { p: "Qual o prazo para me defender na execução?", r: "Os embargos à execução têm prazo de quinze dias (art. 915 do Código de Processo Civil), contados, em regra, da juntada aos autos do comprovante da citação." },
       { p: "O avalista responde por tudo?", r: "O avalista responde pela dívida que garantiu, mas tem defesas próprias e pode discutir o valor cobrado. Cada caso depende do que foi assinado." },
       { p: "Salário pode ser bloqueado?", r: "Como regra, não. O Código de Processo Civil protege salário, verba alimentar e poupança até quarenta salários mínimos, com exceções previstas em lei. A proteção precisa ser demonstrada no processo." },
       { p: "Quanto tempo demora o desbloqueio?", r: "Não há prazo fixo. Pedido bem instruído, com extrato que prove a origem do valor, tende a ser decidido mais rápido." },

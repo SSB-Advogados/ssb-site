@@ -23,7 +23,7 @@ import { JsonLd, breadcrumb, legalService, perfil, pessoa } from "@/lib/schema";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return SOCIOS.map((s) => ({ slug: s.slug }));
+  return SOCIOS.filter((s) => s.perfilPublicado).map((s) => ({ slug: s.slug }));
 }
 
 const areasDe = (slugs: string[]) =>
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps<"/sobre/[slug]">): 
   const { slug } = await params;
   const s = socioPorSlug(slug);
   if (!s) return {};
-  const areas = listaEmTexto(areasDe(s.foco?.areas ?? s.areas).map((a) => a.nome.toLowerCase()));
+  const areas = listaEmTexto(areasDe(s.foco?.areas ?? s.areas).map((a) => a.prosa));
   const socio = s.profissao === "Advogada" ? "sócia" : "sócio";
   const cargo = s.foco?.cargo ?? s.profissao.toLowerCase();
   return {
@@ -58,7 +58,7 @@ const subtitulo = "text-micro uppercase tracking-[0.2em] text-texto-suave";
 export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">) {
   const { slug } = await params;
   const s = socioPorSlug(slug);
-  if (!s) notFound();
+  if (!s || !s.perfilPublicado) notFound();
 
   // Com foco (Vitor: só bancário), o perfil mostra apenas aquela frente,
   // inclusive nos artigos listados.
@@ -101,7 +101,7 @@ export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">
           {s.nomeCompleto} é {s.profissao.toLowerCase()} {fem ? "inscrita" : "inscrito"} na{" "}
           {seccional} sob o nº {numeroOab} e {fem ? "sócia" : "sócio"} do {ESCRITORIO.nome},
           em {ESCRITORIO.endereco.cidade}. Atua em{" "}
-          {listaEmTexto(areas.map((a) => a.nome.toLowerCase()))}.
+          {listaEmTexto(areas.map((a) => a.prosa))}.
         </p>
         <div className="flex flex-wrap gap-4">
           {s.foco ? (

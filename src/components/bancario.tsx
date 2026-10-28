@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Secao } from "@/components/blocos";
 import { TEMAS, hrefTema } from "@/lib/bancario";
-import { nomeExibicao, socioPorSlug } from "@/lib/escritorio";
+import { nomeExibicao, socioPorSlug, hrefPerfil } from "@/lib/escritorio";
 
 /** Cards dos temas bancários. Tema sem página ainda aparece sem link. */
 export function CardsTemas({ excluir }: { excluir?: string }) {
@@ -97,7 +97,7 @@ export function QuemConduzBancario() {
         </div>
         <div>
           <p className="text-texto-suave mb-6">{s.trajetoria}</p>
-          <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
+          <Link href={hrefPerfil(s.slug)} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
             Perfil completo de {s.nome}
           </Link>
         </div>

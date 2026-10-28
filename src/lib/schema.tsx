@@ -4,8 +4,10 @@ const url = (p = "") => `https://${ESCRITORIO.dominio}${p}`;
 
 /** Página de perfil de cada sócio. É a identidade única da pessoa no site:
  *  escritório, artigos do blog e a própria página apontam para este @id. */
-export const perfilUrl = (slug: string) => url(`/sobre/${slug}/`);
-export const pessoaId = (slug: string) => `${perfilUrl(slug)}#pessoa`;
+export const perfilUrl = (slug: string) =>
+  SOCIOS.find((s) => s.slug === slug)?.perfilPublicado ? url(`/sobre/${slug}/`) : url(`/sobre/#${slug}`);
+export const pessoaId = (slug: string) =>
+  SOCIOS.find((s) => s.slug === slug)?.perfilPublicado ? `${perfilUrl(slug)}#pessoa` : perfilUrl(slug);
 
 export const legalService = () => ({
   "@context": "https://schema.org",

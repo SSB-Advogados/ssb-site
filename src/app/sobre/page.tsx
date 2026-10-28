@@ -84,7 +84,9 @@ export default function Sobre() {
                 className="foto aspect-[4/5] w-full rounded-ssb object-cover"
               />
               <h3 className="text-h3 mt-5">
-                <Link href={`/sobre/${s.slug}`} className="hover:text-acento">{s.nome}</Link>
+                {s.perfilPublicado ? (
+                  <Link href={`/sobre/${s.slug}`} className="hover:text-acento">{s.nome}</Link>
+                ) : s.nome}
               </h3>
               <p className="text-mini text-texto-suave mt-1">{s.oab}</p>
 
@@ -117,12 +119,14 @@ export default function Sobre() {
               </ul>
 
               <p className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-                <Link
-                  href={`/sobre/${s.slug}`}
-                  className="inline-flex min-h-11 items-center text-micro uppercase tracking-[0.18em] text-acento hover:text-texto"
-                >
-                  Perfil completo
-                </Link>
+                {s.perfilPublicado && (
+                  <Link
+                    href={`/sobre/${s.slug}`}
+                    className="inline-flex min-h-11 items-center text-micro uppercase tracking-[0.18em] text-acento hover:text-texto"
+                  >
+                    Perfil completo
+                  </Link>
+                )}
                 <a
                   href={s.instagram}
                   target="_blank"
@@ -153,11 +157,13 @@ export default function Sobre() {
             <div key={s.slug}>
               <h3 className="text-h3 mb-3">{s.nome}</h3>
               <p className="text-texto-suave">{s.trajetoria}</p>
-              <p className="mt-4">
-                <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
-                  Perfil completo de {s.nome}
-                </Link>
-              </p>
+              {s.perfilPublicado && (
+                <p className="mt-4">
+                  <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
+                    Perfil completo de {s.nome}
+                  </Link>
+                </p>
+              )}
             </div>
           ))}
         </div>

@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: p === "" ? 1 : 0.8,
     })),
-    ...SOCIOS.map((s) => ({
+    ...SOCIOS.filter((s) => s.perfilPublicado).map((s) => ({
       url: `${base}/sobre/${s.slug}/`,
       lastModified: agora,
       changeFrequency: "monthly" as const,

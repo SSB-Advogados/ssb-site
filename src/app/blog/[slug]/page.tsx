@@ -10,7 +10,7 @@ import {
   areaDe, artigoPorSlug, artigosDaCategoria, autorDe, dataPorExtenso,
   idDoTitulo, todosOsArtigos,
 } from "@/lib/blog";
-import { ESCRITORIO } from "@/lib/escritorio";
+import { ESCRITORIO, hrefPerfil } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, pessoaId } from "@/lib/schema";
 
 export const dynamicParams = false;
@@ -134,7 +134,7 @@ export default async function Artigo({ params }: PageProps<"/blog/[slug]">) {
             <span>
               Por{" "}
               {autor.temPerfil ? (
-                <Link href={`/sobre/${autor.slug}`} className="text-texto hover:text-acento">
+                <Link href={hrefPerfil(autor.slug)} className="text-texto hover:text-acento">
                   {autor.nome}
                 </Link>
               ) : (
