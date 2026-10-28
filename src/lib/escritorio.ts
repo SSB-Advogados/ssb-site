@@ -35,7 +35,13 @@ export const ESCRITORIO = {
 
 export type Socio = {
   slug: string;
+  /** nome de uso, o que aparece em título, card e assinatura de artigo */
   nome: string;
+  /** nome civil completo. Aparece na página de perfil, para a busca pelo
+   *  nome inteiro levar até ela. */
+  nomeCompleto: string;
+  /** "Advogado" ou "Advogada" */
+  profissao: string;
   oab: string;
   instagram: string;
   /** perfil pessoal no LinkedIn. Só é renderizado quando preenchido. */
@@ -48,18 +54,43 @@ export type Socio = {
   foto: string;
   /** recorte quadrado, 640x640 */
   fotoQuadrada: string;
+  /** página de perfil: retrato vertical 1000x1250 e foto horizontal 1600x1000,
+   *  geradas por scripts/fotos-perfis.py */
+  fotoPerfil: string;
+  fotoTrabalho: string;
+  /** de onde vem a experiência. Usado em /sobre e na página de perfil. */
+  trajetoria: string;
+  /** como atua em cada frente, um parágrafo por item */
+  atuacao: string[];
+  formacao: string[];
 };
 
 export const SOCIOS: Socio[] = [
   {
     slug: "vitor-silvino",
     nome: "Vitor Silvino",
+    nomeCompleto: "Vitor Henrique Santos Silvino",
+    profissao: "Advogado",
     oab: "OAB/MG 230.955",
 
     instagram: "https://www.instagram.com/vitorsilvino.adv/",
     linkedin: "https://www.linkedin.com/in/vitorsilvino/",
     foto: "/fotos/vitor-silvino-1993b.webp",
     fotoQuadrada: "/fotos/vitor-silvino-1993b-q.webp",
+    fotoPerfil: "/fotos/vitor-silvino-perfil-3836.webp",
+    fotoTrabalho: "/fotos/vitor-silvino-trabalho-2028.webp",
+    trajetoria:
+      "Atuou em grupos empresariais, instituições financeiras, hubs de investimentos, empresa de dados e bureau de crédito. É de onde vem a familiaridade com contrato, com operação de crédito e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
+    atuacao: [
+      "No direito bancário, atua na defesa de empresas, sócios e avalistas em execução de cédula de crédito bancário, no desbloqueio de conta e na negociação de dívida com o banco antes e durante o processo.",
+      "No empresarial, cuida de acordo de sócios, entrada e saída de sócio e dos contratos que sustentam a operação: prestação de serviço, confidencialidade, cessão e licenciamento.",
+      "Em propriedade intelectual, conduz o registro de marca e de patente no INPI, da busca de anterioridade ao acompanhamento do pedido, e a estruturação jurídica de lançamentos da economia criativa.",
+    ],
+    formacao: [
+      "Graduação em Direito pela Faculdade de Direito Milton Campos",
+      "Pós-graduação em Direito Contratual e Responsabilidade Civil (EBRADI)",
+      "Pós-graduação em Propriedade Intelectual, em curso",
+    ],
     areas: [
       "direito-societario",
       "contratos-empresariais",
@@ -77,12 +108,27 @@ export const SOCIOS: Socio[] = [
   {
     slug: "thayane-barbosa",
     nome: "Thayane Barbosa",
+    nomeCompleto: "Thayane Cristine Barbosa Teixeira",
+    profissao: "Advogada",
     oab: "OAB/MG 194.089",
 
     instagram: "https://www.instagram.com/thayanebarbosa.adv/",
     linkedin: "https://www.linkedin.com/in/thayane-barbosa-8aba79162/",
     foto: "/fotos/thayane-barbosa-1630b.webp",
     fotoQuadrada: "/fotos/thayane-barbosa-1630b-q.webp",
+    fotoPerfil: "/fotos/thayane-barbosa-perfil-4136.webp",
+    fotoTrabalho: "/fotos/thayane-barbosa-trabalho-1638.webp",
+    trajetoria:
+      "Conduz demandas familiares e patrimoniais dentro e fora do Brasil, o que envolve partilha com bens em mais de um país, sucessão de patrimônio internacional e conflito familiar entre pessoas que vivem em jurisdições diferentes.",
+    atuacao: [
+      "Em família e sucessões, atua em divórcio, guarda e alimentos, inventário e partilha, e no planejamento que vem antes deles: pacto antenupcial e escolha do regime de bens.",
+      "No imobiliário e patrimonial, cuida de usucapião, ações possessórias e da regularização do patrimônio da família.",
+      "No direito bancário, divide com Vitor Silvino a defesa em execução e a revisão de contratos com instituições financeiras.",
+    ],
+    formacao: [
+      "Pós-graduação em Direito de Família e Sucessões",
+      "Pós-graduação em Direito Processual Civil e Direito Civil",
+    ],
     areas: [
       "familia-e-sucessoes",
       "direito-imobiliario",

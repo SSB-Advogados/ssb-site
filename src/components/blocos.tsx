@@ -54,11 +54,13 @@ export function QuemConduz({ socios }: { socios: Socio[] }) {
               className="foto h-24 w-24 shrink-0 rounded-ssb object-cover sm:h-28 sm:w-28"
             />
             <div>
-            <h3 className="text-h3">{s.nome}</h3>
+            <h3 className="text-h3">
+              <Link href={`/sobre/${s.slug}`} className="hover:text-acento">{s.nome}</Link>
+            </h3>
             <p className="text-mini text-texto-suave mt-1">{s.oab}</p>
             <p className="mt-4 text-mini">
-              <Link href="/sobre" className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
-                Sobre o escritório
+              <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
+                Perfil completo
               </Link>
               <span aria-hidden className="mx-2 text-texto-suave">·</span>
               <a href={s.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">

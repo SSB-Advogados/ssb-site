@@ -83,7 +83,9 @@ export default function Sobre() {
                 sizes="(max-width: 768px) 100vw, 360px"
                 className="foto aspect-[4/5] w-full rounded-ssb object-cover"
               />
-              <h3 className="text-h3 mt-5">{s.nome}</h3>
+              <h3 className="text-h3 mt-5">
+                <Link href={`/sobre/${s.slug}`} className="hover:text-acento">{s.nome}</Link>
+              </h3>
               <p className="text-mini text-texto-suave mt-1">{s.oab}</p>
 
               <h4 className="text-micro uppercase tracking-[0.2em] text-texto-suave mt-6 mb-2">
@@ -115,6 +117,12 @@ export default function Sobre() {
               </ul>
 
               <p className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+                <Link
+                  href={`/sobre/${s.slug}`}
+                  className="inline-flex min-h-11 items-center text-micro uppercase tracking-[0.18em] text-acento hover:text-texto"
+                >
+                  Perfil completo
+                </Link>
                 <a
                   href={s.instagram}
                   target="_blank"
@@ -141,25 +149,17 @@ export default function Sobre() {
 
       <Secao rotulo="Trajetória" titulo="De onde vem a experiência.">
         <div className="grid gap-10 md:grid-cols-2">
-          <div>
-            <h3 className="text-h3 mb-3">Vitor Silvino</h3>
-            <p className="text-texto-suave">
-              Atuou em grupos empresariais, instituições financeiras, hubs de
-              investimentos, empresa de dados e bureau de crédito. É de onde vem
-              a familiaridade com contrato, com operação de crédito e com
-              execução vista dos dois lados do balcão: quem cobra e quem é
-              cobrado.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-h3 mb-3">Thayane Barbosa</h3>
-            <p className="text-texto-suave">
-              Conduz demandas familiares e patrimoniais dentro e fora do Brasil,
-              o que envolve partilha com bens em mais de um país, sucessão de
-              patrimônio internacional e conflito familiar entre pessoas que
-              vivem em jurisdições diferentes.
-            </p>
-          </div>
+          {SOCIOS.map((s) => (
+            <div key={s.slug}>
+              <h3 className="text-h3 mb-3">{s.nome}</h3>
+              <p className="text-texto-suave">{s.trajetoria}</p>
+              <p className="mt-4">
+                <Link href={`/sobre/${s.slug}`} className="inline-flex min-h-11 items-center text-mini text-acento underline underline-offset-4">
+                  Perfil completo de {s.nome}
+                </Link>
+              </p>
+            </div>
+          ))}
         </div>
       </Secao>
 

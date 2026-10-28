@@ -1,6 +1,11 @@
-import { AREAS, ESCRITORIO, SOCIOS, enderecoEmLinha } from "@/lib/escritorio";
+import { AREAS, ESCRITORIO, SOCIOS, enderecoEmLinha, type Socio } from "@/lib/escritorio";
 
 const url = (p = "") => `https://${ESCRITORIO.dominio}${p}`;
+
+/** Página de perfil de cada sócio. É a identidade única da pessoa no site:
+ *  escritório, artigos do blog e a própria página apontam para este @id. */
+export const perfilUrl = (slug: string) => url(`/sobre/${slug}/`);
+export const pessoaId = (slug: string) => `${perfilUrl(slug)}#pessoa`;
 
 export const legalService = () => ({
   "@context": "https://schema.org",
@@ -29,20 +34,41 @@ export const legalService = () => ({
   ],
   sameAs: [ESCRITORIO.redes.instagram, ESCRITORIO.redes.linkedin],
   knowsAbout: AREAS.map((a) => a.nome),
-  member: SOCIOS.map((s) => ({ "@id": url(`/sobre#${s.slug}`) })),
+  member: SOCIOS.map((s) => ({ "@id": pessoaId(s.slug) })),
 });
 
-export const attorneys = () =>
-  SOCIOS.map((s) => ({
-    "@context": "https://schema.org",
-    "@type": "Attorney",
-    "@id": url(`/sobre#${s.slug}`),
-    name: s.nome,
-    identifier: s.oab,
-    worksFor: { "@id": url("/#escritorio") },
-    sameAs: [s.instagram, s.linkedin].filter(Boolean) as string[],
-    url: url("/sobre"),
-  }));
+/** O sócio como pessoa. "Attorney" no schema.org é tipo de estabelecimento,
+ *  não de pessoa, por isso aqui é Person com jobTitle. O nome civil vai em
+ *  alternateName para que a busca pelo nome completo e pelo nome de uso
+ *  caiam na mesma pessoa. */
+export const pessoa = (s: Socio) => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": pessoaId(s.slug),
+  name: s.nome,
+  alternateName: s.nomeCompleto,
+  jobTitle: s.profissao,
+  identifier: s.oab,
+  image: url(s.fotoPerfil),
+  worksFor: { "@id": url("/#escritorio") },
+  workLocation: { "@type": "City", name: ESCRITORIO.endereco.cidade },
+  knowsAbout: s.areas.map((slug) => AREAS.find((a) => a.slug === slug)!.nome),
+  sameAs: [s.instagram, s.linkedin].filter(Boolean) as string[],
+  url: perfilUrl(s.slug),
+});
+
+export const attorneys = () => SOCIOS.map(pessoa);
+
+export const perfil = (s: Socio) => ({
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": perfilUrl(s.slug),
+  url: perfilUrl(s.slug),
+  name: `${s.nomeCompleto}, ${s.profissao.toLowerCase()}`,
+  inLanguage: "pt-BR",
+  isPartOf: { "@id": url("/#site") },
+  mainEntity: { "@id": pessoaId(s.slug) },
+});
 
 export const website = () => ({
   "@context": "https://schema.org",

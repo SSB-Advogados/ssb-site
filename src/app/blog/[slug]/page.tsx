@@ -11,7 +11,7 @@ import {
   idDoTitulo, todosOsArtigos,
 } from "@/lib/blog";
 import { ESCRITORIO } from "@/lib/escritorio";
-import { JsonLd, breadcrumb } from "@/lib/schema";
+import { JsonLd, breadcrumb, pessoaId } from "@/lib/schema";
 
 export const dynamicParams = false;
 
@@ -90,12 +90,9 @@ export default async function Artigo({ params }: PageProps<"/blog/[slug]">) {
           dateModified: a.atualizadoEm,
           inLanguage: "pt-BR",
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
-          author: {
-            "@type": "Person",
-            name: autor.nome,
-            identifier: autor.oab,
-            url: `https://${ESCRITORIO.dominio}/sobre#${autor.slug}`,
-          },
+          author: autor.temPerfil
+            ? { "@id": pessoaId(autor.slug) }
+            : { "@type": "Person", name: autor.nome, identifier: autor.oab },
           publisher: { "@id": `https://${ESCRITORIO.dominio}/#escritorio` },
           about: area.nome,
           wordCount: a.corpo.split(/\s+/).length,
@@ -137,7 +134,7 @@ export default async function Artigo({ params }: PageProps<"/blog/[slug]">) {
             <span>
               Por{" "}
               {autor.temPerfil ? (
-                <Link href={`/sobre#${autor.slug}`} className="text-texto hover:text-acento">
+                <Link href={`/sobre/${autor.slug}`} className="text-texto hover:text-acento">
                   {autor.nome}
                 </Link>
               ) : (
