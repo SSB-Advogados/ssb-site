@@ -22,8 +22,12 @@ import { JsonLd, breadcrumb, legalService, perfil, pessoa } from "@/lib/schema";
 
 export const dynamicParams = false;
 
+/** No `npm run dev` o perfil ainda não publicado aparece, para o sócio
+ *  conferir a página antes de ir ao ar. No build de produção, não. */
+const emPrevia = process.env.NODE_ENV === "development";
+
 export function generateStaticParams() {
-  return SOCIOS.filter((s) => s.perfilPublicado).map((s) => ({ slug: s.slug }));
+  return SOCIOS.filter((s) => s.perfilPublicado || emPrevia).map((s) => ({ slug: s.slug }));
 }
 
 const areasDe = (slugs: string[]) =>
@@ -58,7 +62,7 @@ const subtitulo = "text-micro uppercase tracking-[0.2em] text-texto-suave";
 export default async function PerfilSocio({ params }: PageProps<"/sobre/[slug]">) {
   const { slug } = await params;
   const s = socioPorSlug(slug);
-  if (!s || !s.perfilPublicado) notFound();
+  if (!s || !(s.perfilPublicado || emPrevia)) notFound();
 
   // Com foco (Vitor: só bancário), o perfil mostra apenas aquela frente,
   // inclusive nos artigos listados.

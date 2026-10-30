@@ -29,7 +29,8 @@ DESTINO = "public/fotos"
 # (arquivo, slug, uso, tamanho, espelhar)
 FOTOS = [
     ("DSC_38362.jpg", "vitor-silvino", "topo", (1500, 1875), False),  # logo SSB
-    ("DSC_4136.jpg", "thayane-barbosa", "topo", (1500, 1875), False),  # logo SSB, rindo
+    ("DSC_29193.jpg", "thayane-barbosa", "topo", (1500, 1875), True),  # escolhida em 30/10
+    ("DSC_4439.jpg", "thayane-barbosa", "retrato", (1000, 1250), True),  # terraço, escolhida em 30/10
     ("DSC_3839.jpg", "vitor-silvino", "topo", (1500, 1875), False),  # logo SSB; topo de Nova Lima
     ("DSC_2806.jpg", "vitor-silvino", "retrato", (1000, 1250), True),  # sério, escolhido em 28/10
 ]

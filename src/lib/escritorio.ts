@@ -159,7 +159,8 @@ export const SOCIOS: Socio[] = [
     foto: "/fotos/thayane-barbosa-1630b.webp",
     fotoQuadrada: "/fotos/thayane-barbosa-1630b-q.webp",
     fotosPerfil: {
-      topo: "/fotos/thayane-barbosa-topo-4136.webp",
+      topo: "/fotos/thayane-barbosa-topo-2919.webp",
+      retrato: "/fotos/thayane-barbosa-retrato-4439.webp",
     },
     trajetoria:
       "Conduz demandas familiares e patrimoniais dentro e fora do Brasil, o que envolve partilha com bens em mais de um país, sucessão de patrimônio internacional e conflito familiar entre pessoas que vivem em jurisdições diferentes.",
