@@ -13,13 +13,22 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-borda bg-fundo">
       <div className="mx-auto max-w-[1200px] px-5 py-14 md:px-8">
+        {/* Lockup oficial (SSB em argila): texto claro no tema escuro, texto escuro no claro */}
         <Image
-          src="/brand/lockup-empilhado-escuro.png"
+          src="/brand/lockup-empilhado-acento.png"
           alt=""
           width={1200}
-          height={438}
+          height={437}
           aria-hidden
-          className="mb-14 h-16 w-auto opacity-90"
+          className="mb-14 h-16 w-auto opacity-90 logo-escuro"
+        />
+        <Image
+          src="/brand/lockup-empilhado-claro.png"
+          alt=""
+          width={1200}
+          height={408}
+          aria-hidden
+          className="mb-14 h-16 w-auto opacity-90 logo-claro"
         />
 
         <div className="grid gap-10 md:grid-cols-3">
