@@ -152,6 +152,7 @@ export const SOCIOS: Socio[] = [
     nomeCompleto: "Thayane Cristine Barbosa Teixeira",
     profissao: "Advogada",
     perfilPublicado: false, // Vitor, 28/10/2026: a Thayane precisa analisar antes
+    tratamento: "Dra.", // mesma lógica do perfil do Vitor (30/10/2026)
     oab: "OAB/MG 194.089",
 
     instagram: "https://www.instagram.com/thayanebarbosa.adv/",
@@ -169,6 +170,23 @@ export const SOCIOS: Socio[] = [
       "No imobiliário e patrimonial, cuida de usucapião, ações possessórias e da regularização do patrimônio da família.",
       "No direito bancário, divide com Vitor Silvino a defesa em execução e a revisão de contratos com instituições financeiras.",
     ],
+    foco: {
+      titulo: "Advogada de Família em Belo Horizonte",
+      cargo: "advogada de família",
+      pagina: { href: "/areas-de-atuacao/familia-e-sucessoes", nome: "Advogada de família em Belo Horizonte" },
+      areas: ["familia-e-sucessoes"],
+      atuacao: [
+        "Atua em família e sucessões: divórcio, guarda e alimentos, inventário e partilha, e no planejamento que vem antes deles, como o pacto antenupcial e a escolha do regime de bens.",
+        "No inventário e na partilha, organiza o patrimônio da família e conduz o caminho em cartório, quando há acordo, ou na Justiça, quando não há.",
+        "Conduz também casos familiares com elementos fora do Brasil: partilha com bens em mais de um país, sucessão de patrimônio no exterior e conflito entre pessoas que vivem em países diferentes.",
+      ],
+      destaques: [
+        "Divórcio, guarda e alimentos",
+        "Inventário e partilha",
+        "Pacto antenupcial e regime de bens",
+        "Conflitos familiares e patrimoniais no exterior",
+      ],
+    },
     formacao: [
       "Pós-graduação em Direito de Família e Sucessões",
       "Pós-graduação em Direito Processual Civil e Direito Civil",
