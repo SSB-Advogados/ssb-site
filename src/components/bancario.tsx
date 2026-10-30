@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Secao } from "@/components/blocos";
-import { TEMAS, hrefTema } from "@/lib/bancario";
+import { TEMAS, hrefTema, type Tema } from "@/lib/bancario";
 import { nomeExibicao, socioPorSlug, hrefPerfil } from "@/lib/escritorio";
 
-/** Cards dos temas bancários. Tema sem página ainda aparece sem link. */
-export function CardsTemas({ excluir }: { excluir?: string }) {
-  const temas = TEMAS.filter((t) => t.slug !== excluir);
+/** Cards dos temas (bancário por padrão, família na página da Thayane).
+ *  Tema sem página ainda aparece sem link. */
+export function CardsTemas({
+  excluir, temas: lista = TEMAS, href = hrefTema, outro = "Outro problema com o banco",
+}: { excluir?: string; temas?: Tema[]; href?: (slug: string) => string; outro?: string }) {
+  const temas = lista.filter((t) => t.slug !== excluir);
   return (
-    <ul className="grid gap-px overflow-hidden rounded-ssb border border-borda bg-borda sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-px overflow-hidden rounded-ssb border border-borda bg-borda sm:grid-cols-2 xl:grid-cols-4">
       {temas.map((t) => {
         const corpo = (
           <>
@@ -23,7 +26,7 @@ export function CardsTemas({ excluir }: { excluir?: string }) {
         return (
           <li key={t.slug} className="bg-fundo">
             {t.temPagina ? (
-              <Link href={hrefTema(t.slug)} className="block h-full p-7 transition-colors hover:bg-fundo-elevado">
+              <Link href={href(t.slug)} className="block h-full p-7 transition-colors hover:bg-fundo-elevado">
                 {corpo}
               </Link>
             ) : (
@@ -32,10 +35,10 @@ export function CardsTemas({ excluir }: { excluir?: string }) {
           </li>
         );
       })}
-      {/* Fecha a grade (7 temas em 3 colunas) e atende quem não se viu nos cards */}
+      {/* Fecha a grade (7 temas + este = 8, em 2 ou 4 colunas) e atende quem não se viu nos cards */}
       <li className="bg-fundo-elevado">
         <Link href="/contato" className="flex h-full flex-col justify-center p-7 transition-colors hover:bg-fundo">
-          <p className="text-micro uppercase tracking-[0.14em] text-acento mb-4">Outro problema com o banco</p>
+          <p className="text-micro uppercase tracking-[0.14em] text-acento mb-4">{outro}</p>
           <h3 className="font-display text-h3 leading-snug mb-4">“Não achei o meu caso aqui.”</h3>
           <p className="text-mini text-texto-suave">Conte o que está acontecendo. A análise começa pelos seus documentos.</p>
           <span className="mt-5 inline-block text-mini text-acento">Falar com o escritório →</span>
@@ -45,6 +48,13 @@ export function CardsTemas({ excluir }: { excluir?: string }) {
   );
 }
 
+export const PASSOS_FAMILIA = [
+  { titulo: "Conversa reservada", texto: "Você conta o que está acontecendo, por WhatsApp, vídeo ou no escritório, com sigilo profissional." },
+  { titulo: "Leitura dos documentos", texto: "Certidões, decisões anteriores e documentos dos bens são lidos por inteiro, para entender a situação real." },
+  { titulo: "Caminho definido por escrito", texto: "Acordo, cartório ou Justiça. Você recebe a explicação do caminho e do escopo antes de qualquer passo." },
+  { titulo: "Acompanhamento", texto: "Cada movimentação relevante é explicada em linguagem simples, sem precisar decifrar o processo." },
+];
+
 const PASSOS = [
   { titulo: "Conversa inicial", texto: "Você conta o que está acontecendo, por WhatsApp, vídeo ou no escritório. Sem formulário longo." },
   { titulo: "Leitura dos documentos", texto: "Extrato, contrato e histórico do benefício são lidos por inteiro, para saber o que foi contratado e o que foi cobrado." },
@@ -52,14 +62,14 @@ const PASSOS = [
   { titulo: "Acompanhamento", texto: "Cada movimentação relevante é explicada em linguagem simples, sem precisar decifrar o processo." },
 ];
 
-export function ComoFunciona() {
+export function ComoFunciona({ passos = PASSOS }: { passos?: { titulo: string; texto: string }[] }) {
   return (
     <section className="faixa-escura">
       <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
         <p className="rotulo mb-6">Como funciona</p>
         <h2 className="text-h2 mb-14 max-w-[20ch]">Do primeiro contato ao caso resolvido.</h2>
         <ol className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {PASSOS.map((p, i) => (
+          {passos.map((p, i) => (
             <li key={p.titulo}>
               <p className="font-display text-h2 leading-none text-acento/60 mb-4 tabular-nums">
                 {String(i + 1).padStart(2, "0")}
@@ -74,9 +84,9 @@ export function ComoFunciona() {
   );
 }
 
-/** Quem conduz os casos bancários. O texto vem da trajetória do sócio. */
-export function QuemConduzBancario() {
-  const s = socioPorSlug("vitor-silvino")!;
+/** Quem conduz os casos da página. O texto vem da trajetória do sócio. */
+export function QuemConduzBancario({ slug = "vitor-silvino" }: { slug?: string }) {
+  const s = socioPorSlug(slug)!;
   return (
     <Secao rotulo="Quem conduz o seu caso">
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
