@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { categoriasComArtigo, todosOsArtigos } from "@/lib/blog";
 import { PAGINAS_LOCAIS, PAGINAS_TEMA, hrefTema } from "@/lib/bancario";
+import { PAGINAS_LOCAIS_FAMILIA, PAGINAS_TEMA_FAMILIA, hrefTemaFamilia } from "@/lib/familia";
 import { AREAS, ESCRITORIO, SOCIOS } from "@/lib/escritorio";
 
 // Gerado no build: o site é exportado estático.
@@ -33,6 +34,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...PAGINAS_TEMA.map((t) => ({
       url: `${base}${hrefTema(t.slug)}/`,
+      lastModified: agora,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...PAGINAS_LOCAIS_FAMILIA.map((l) => ({
+      url: `${base}/advogada-de-familia/${l.slug}/`,
+      lastModified: agora,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
+    ...PAGINAS_TEMA_FAMILIA.map((t) => ({
+      url: `${base}${hrefTemaFamilia(t.slug)}/`,
       lastModified: agora,
       changeFrequency: "monthly" as const,
       priority: 0.8,

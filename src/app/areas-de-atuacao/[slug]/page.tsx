@@ -6,6 +6,7 @@ import {
   BlocosNumerados, ChamadaFinal, Escopo, QuemConduz, Secao,
 } from "@/components/blocos";
 import { CardsTemas } from "@/components/bancario";
+import { TEMAS_FAMILIA, hrefTemaFamilia } from "@/lib/familia";
 import { CONTEUDO } from "@/lib/areas-conteudo";
 import { AREAS, socioPorSlug } from "@/lib/escritorio";
 import { JsonLd, breadcrumb, faqPage, servico } from "@/lib/schema";
@@ -87,6 +88,17 @@ export default async function PaginaArea({ params }: PageProps<"/areas-de-atuaca
           <p className="mt-10">
             <Link href="/advogado-bancario/belo-horizonte" className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
               Advogado bancário em Belo Horizonte
+            </Link>
+          </p>
+        </Secao>
+      )}
+
+      {a.slug === "familia-e-sucessoes" && (
+        <Secao rotulo="Situações" titulo="Divórcio, pensão, guarda, inventário.">
+          <CardsTemas temas={TEMAS_FAMILIA} href={hrefTemaFamilia} outro="Outra questão de família" />
+          <p className="mt-10">
+            <Link href="/advogada-de-familia/belo-horizonte" className="inline-flex min-h-11 items-center text-acento underline underline-offset-4">
+              Advogada de família em Belo Horizonte
             </Link>
           </p>
         </Secao>

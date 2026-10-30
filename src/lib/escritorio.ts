@@ -171,20 +171,22 @@ export const SOCIOS: Socio[] = [
       "No direito bancário, divide com Vitor Silvino a defesa em execução e a revisão de contratos com instituições financeiras.",
     ],
     foco: {
-      titulo: "Advogada de Família em Belo Horizonte",
-      cargo: "advogada de família",
-      pagina: { href: "/areas-de-atuacao/familia-e-sucessoes", nome: "Advogada de família em Belo Horizonte" },
-      areas: ["familia-e-sucessoes"],
+      titulo: "Advogada de Família e Bancária em Belo Horizonte",
+      cargo: "advogada de família e bancária",
+      pagina: { href: "/advogada-de-familia/belo-horizonte", nome: "Advogada de família em Belo Horizonte" },
+      areas: ["familia-e-sucessoes", "direito-bancario"],
       atuacao: [
         "Atua em família e sucessões: divórcio, guarda e alimentos, inventário e partilha, e no planejamento que vem antes deles, como o pacto antenupcial e a escolha do regime de bens.",
         "No inventário e na partilha, organiza o patrimônio da família e conduz o caminho em cartório, quando há acordo, ou na Justiça, quando não há.",
         "Conduz também casos familiares com elementos fora do Brasil: partilha com bens em mais de um país, sucessão de patrimônio no exterior e conflito entre pessoas que vivem em países diferentes.",
+        "No direito bancário, atua ao lado do Dr. Vitor Silvino na defesa de quem é cobrado pelo banco, da revisão de contratos à defesa em execução.",
       ],
       destaques: [
         "Divórcio, guarda e alimentos",
         "Inventário e partilha",
         "Pacto antenupcial e regime de bens",
         "Conflitos familiares e patrimoniais no exterior",
+        "Revisão de contrato e defesa em execução bancária",
       ],
     },
     formacao: [
