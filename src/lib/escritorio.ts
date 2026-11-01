@@ -151,7 +151,7 @@ export const SOCIOS: Socio[] = [
     nome: "Thayane Barbosa",
     nomeCompleto: "Thayane Cristine Barbosa Teixeira",
     profissao: "Advogada",
-    perfilPublicado: false, // Vitor, 28/10/2026: a Thayane precisa analisar antes
+    perfilPublicado: true, // aprovado pelo Vitor em 01/11/2026
     tratamento: "Dra.", // mesma lógica do perfil do Vitor (30/10/2026)
     oab: "OAB/MG 194.089",
 
