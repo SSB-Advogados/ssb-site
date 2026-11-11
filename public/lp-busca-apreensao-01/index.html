@@ -425,11 +425,11 @@
 
 <script>
 /* ===== Configuração =====
-   WA_TEXTO precisa conter "Vi o anúncio": é essa frase que faz o Chat Jurídico
-   disparar a abertura e manter a IA (Stefani) ligada. Sem ela, a automação
-   "Pausar IA (nao veio de anuncio)" pausa a IA na conversa. */
+   WA_TEXTO NÃO usa a frase "Vi o anúncio" (decisão de 11/11/2026). Sem ela, o
+   Chat Jurídico não manda a abertura de aposentados, pausa a IA e a equipe
+   atende. O Chat Jurídico será cancelado depois de 23/11/2026. */
 var WA_NUMERO = "5531986299703";
-var WA_TEXTO  = "Olá! Vi o anúncio sobre busca e apreensão de veículo e preciso de ajuda com o meu caso.";
+var WA_TEXTO  = "Olá! Vim pela página de busca e apreensão de veículo e preciso de ajuda com o meu caso.";
 var ENDPOINT_RASTREIO = "https://script.google.com/macros/s/AKfycbyQC-ADnnVglFYh0X7P8OlGZ0es6Z-0ybLMleLY5ztan6XQR51TFtSguvtej-N7j4ma/exec"; /* URL que recebe os dados do clique (planilha de leads). Vazio = não envia. */
 var GADS_CONVERSAO = "AW-18376309799/5XMgCOHDmIkdEKf4wLpE";    /* conversão do Google Ads. Vazio = não dispara. */
 
