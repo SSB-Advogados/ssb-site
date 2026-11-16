@@ -42,9 +42,9 @@ export default function Sobre() {
           <p>
             Isso exige alcance. Uma questão familiar toca patrimônio. Uma
             operação de crédito toca contrato e garantia. Uma reorganização
-            societária toca a sucessão da família. O escritório reúne
-            empresarial, patrimonial, familiar, bancário e previdenciário
-            porque essas frentes costumam aparecer juntas.
+            societária toca a sucessão da família. O escritório atua em duas
+            frentes, patrimonial e empresarial, porque essas questões costumam
+            aparecer juntas.
           </p>
           <p>
             O método é o mesmo em todas elas: entender a situação antes de

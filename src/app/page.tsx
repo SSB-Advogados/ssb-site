@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Botao, Card, Rotulo } from "@/components/ui";
+import { Botao, Rotulo } from "@/components/ui";
 import { BlocosNumerados, ChamadaFinal, Secao } from "@/components/blocos";
-import { CONTEUDO } from "@/lib/areas-conteudo";
 import { AREAS, ESCRITORIO, SOCIOS } from "@/lib/escritorio";
+import { FRENTES, POSICIONAMENTO_SOCIO } from "@/lib/posicionamento";
 import { JsonLd, attorneys, legalService, website } from "@/lib/schema";
 
 const ETAPAS = [
@@ -13,7 +13,7 @@ const ETAPAS = [
       `Pelo WhatsApp, pelo telefone ou por e-mail. O escritório responde ${ESCRITORIO.prazoRetorno}.`,
   },
   {
-    titulo: "Conversa de diagnóstico",
+    titulo: "Consultoria",
     texto:
       "Uma conversa longa, no detalhe, com leitura dos documentos que existirem. É onde a situação é entendida por inteiro: o que já aconteceu, o que está correndo e o que ainda pode ser feito. Ao final dela você sabe quais são os caminhos, o que cada um exige e em que ordem.",
   },
@@ -85,39 +85,106 @@ export default function Home() {
           <div className="max-w-[34rem] py-28 lg:py-44">
             <Rotulo>Belo Horizonte · MG</Rotulo>
             <h1 className="text-h1 md:text-display mb-8 max-w-[12ch]">
-              Advocacia para pessoas, <span className="enfase">famílias</span> e empresas.
+              Advocacia <span className="enfase">patrimonial</span> e empresarial.
             </h1>
             <p className="text-medio text-texto-suave mb-12 max-w-[38ch]">
-              O SSB Advogados atende com escuta afetiva e atenção estratégica em
-              Direito Bancário, Família, Imobiliário e Empresarial. O foco é o
-              problema concreto de quem procura o escritório, e o trabalho é
-              orientado a resolvê-lo.
+              O SSB Advogados atua com atenção estratégica na proteção de
+              patrimônio de pessoas e empresas.
             </p>
             <div className="flex flex-wrap gap-4">
               <Botao href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent("Olá, vim pelo site do SSB Advogados. Gostaria de falar com o escritório. (ref: geral)")}`}>
                 Falar no WhatsApp
               </Botao>
-              <Botao href="/areas-de-atuacao" variante="secundario">Áreas de atuação</Botao>
+              <Botao href="#atuacao" variante="secundario">Áreas de atuação</Botao>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1200px] px-5 md:px-8">
-      <Secao rotulo="Como podemos te ajudar">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {AREAS.map((area) => {
-            const c = CONTEUDO.find((x) => x.slug === area.slug)!;
-            return (
-              <Card key={area.slug} titulo={area.nome} href={`/areas-de-atuacao/${area.slug}`}>
-                {c.h1}
-              </Card>
-            );
-          })}
-        </div>
-      </Secao>
+      {/* Faixa de compromissos: só o que o escritório já cumpre e está em
+          escritorio.ts. Nada de "anos de atuação" (fundado em 2026). */}
+      <div className="border-y border-borda bg-fundo-profundo">
+        <ul className="mx-auto grid max-w-[1200px] gap-px px-5 sm:grid-cols-3 md:px-8">
+          {[
+            ["Resposta", ESCRITORIO.prazoRetorno ?? ""],
+            ["Presencial", "em Belo Horizonte"],
+            ["Remoto", "em todo o Brasil e no exterior"],
+          ].map(([a, b]) => (
+            <li key={a} className="py-6 text-center sm:py-8">
+              <p className="text-micro uppercase tracking-[0.2em] text-texto-suave mb-2">{a}</p>
+              <p className="font-display text-h3 enfase">{b}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <Secao rotulo="Como o escritório trabalha" titulo="Oito áreas que conversam entre si.">
+      <div className="mx-auto max-w-[1200px] px-5 md:px-8">
+      <section id="atuacao" className="scroll-mt-24 py-20 md:py-28">
+        <Rotulo>Atuação</Rotulo>
+        <h2 className="text-h2 mb-16 max-w-[20ch]">Duas frentes de atuação.</h2>
+
+        <div className="flex flex-col gap-20">
+          {FRENTES.map((f, i) => (
+            <div key={f.slug}>
+              <div className="mb-8 grid gap-4 border-t border-borda-forte pt-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:items-end md:gap-12">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-display text-mini text-acento tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display text-h1">{f.nome}</h3>
+                </div>
+                <p className="text-medio text-texto-suave max-w-[46ch]">{f.resumo}</p>
+              </div>
+
+              <ul className={`grid gap-px overflow-hidden rounded-ssb border border-borda bg-borda sm:grid-cols-2 ${f.itens.length % 4 === 0 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+                {f.itens.map((it) => {
+                  const corpo = (
+                    <>
+                      <h4 className="text-h3 mb-3" style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.14 }}>{it.titulo}</h4>
+                      <p className="text-mini text-texto-suave flex-1">{it.texto}</p>
+                      {it.href && (
+                        <p className="mt-6 text-micro uppercase tracking-[0.18em] text-acento">
+                          Saiba mais <span aria-hidden className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                        </p>
+                      )}
+                    </>
+                  );
+                  return (
+                    <li key={it.titulo} className="flex bg-fundo">
+                      {it.href ? (
+                        <Link href={it.href} className="group flex w-full flex-col p-7 transition-colors duration-200 hover:bg-fundo-elevado">
+                          {corpo}
+                        </Link>
+                      ) : (
+                        <div className="flex w-full flex-col p-7">{corpo}</div>
+                      )}
+                    </li>
+                  );
+                })}
+                {/* Fecha a grade sem buraco quando os itens não completam a linha. */}
+                {f.itens.length % 4 !== 0 && f.itens.length % 3 !== 0 && (
+                  <li className="flex bg-fundo-elevado">
+                    <a
+                      href={`${ESCRITORIO.whatsapp}?text=${encodeURIComponent("Olá, vim pelo site do SSB Advogados. Gostaria de falar sobre a minha empresa. (ref: empresarial)")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex w-full flex-col p-7 transition-colors duration-200 hover:bg-fundo"
+                    >
+                      <h4 className="text-h3 mb-3" style={{ fontFamily: "var(--font-display)", fontWeight: 400, lineHeight: 1.14 }}>Fale com o escritório</h4>
+                      <p className="text-mini text-texto-suave flex-1">Conte o que a empresa precisa. O escritório responde {ESCRITORIO.prazoRetorno}.</p>
+                      <p className="mt-6 text-micro uppercase tracking-[0.18em] text-acento">
+                        WhatsApp <span aria-hidden className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                      </p>
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Secao rotulo="Como o escritório trabalha" titulo="Áreas que conversam entre si.">
         <BlocosNumerados blocos={METODO} />
       </Secao>
 
@@ -158,6 +225,9 @@ export default function Home() {
               />
               <div className="flex flex-1 flex-col p-6">
               <h3 className="text-h3">{s.nome}</h3>
+              {POSICIONAMENTO_SOCIO[s.slug] && (
+                <p className="text-mini text-acento mt-1">{POSICIONAMENTO_SOCIO[s.slug]}</p>
+              )}
               <p className="text-mini text-texto-suave mt-1">{s.oab} · Belo Horizonte</p>
               <ul className="mt-4 flex flex-col gap-2 md:min-h-[9.25rem]">
                 {s.areas.map((slug) => {

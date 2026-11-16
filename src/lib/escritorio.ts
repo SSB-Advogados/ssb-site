@@ -104,22 +104,31 @@ export const SOCIOS: Socio[] = [
     },
     trajetoria:
       "Atuou no Grupo BMG (Banco BMG) e na Serasa Experian, além de grupos empresariais e hubs de investimentos. Viu por dentro como o banco concede o crédito, averba o consignado, registra a dívida e cobra. É de onde vem a familiaridade com contrato, com desconto em folha e em benefício e com execução vista dos dois lados do balcão: quem cobra e quem é cobrado.",
+    // Até 16/11/2026 o recorte era só bancário. Na reunião dos sócios o
+    // posicionamento passou a advocacia patrimonial e empresarial.
     foco: {
-      titulo: "Advogado Bancário em Belo Horizonte",
-      cargo: "advogado bancário",
-      pagina: { href: "/advogado-bancario/belo-horizonte", nome: "Advogado bancário em Belo Horizonte" },
-      areas: ["direito-bancario"],
+      titulo: "Advogado Patrimonial e Empresarial em Belo Horizonte",
+      cargo: "advogado patrimonial e empresarial",
+      pagina: { href: "/#atuacao", nome: "Áreas de atuação" },
+      areas: [
+        "direito-societario",
+        "contratos-empresariais",
+        "marcas-e-propriedade-intelectual",
+        "direito-tributario",
+        "direito-bancario",
+      ],
       atuacao: [
-        "Atua do lado de quem é cobrado pelo banco: pessoa física com desconto que não reconhece no salário, na aposentadoria ou na conta, e empresa, sócio ou avalista executado por cédula de crédito bancário.",
-        "No consignado, confere o que foi averbado contra o que foi contratado: cartão RMC ou RCC no lugar de empréstimo, margem tomada sem pedido, seguro e associação descontados sem autorização, portabilidade que ninguém pediu.",
-        "Na execução e na dívida com o banco, cuida do desbloqueio de conta, da defesa em embargos e da negociação, sempre a partir dos documentos do próprio banco: contrato, extrato e demonstrativo.",
+        "No empresarial, cuida de acordo de sócios, entrada e saída de sócio e dos contratos que sustentam a operação: prestação de serviço, confidencialidade, cessão e licenciamento.",
+        "Em propriedade intelectual, conduz o registro de marca e de patente no INPI, da busca de anterioridade ao acompanhamento do pedido.",
+        "No tributário, trata dos débitos da empresa e do sócio com o Fisco: transação tributária, parcelamento e defesa na execução fiscal.",
+        "Na defesa patrimonial contra o banco, atua do lado de quem é cobrado: empresa, sócio ou avalista executado por cédula de crédito bancário, vítima de fraude bancária e quem enfrenta busca e apreensão de veículo, sempre a partir dos documentos do próprio banco.",
       ],
       destaques: [
-        "Descontos indevidos no benefício e na conta",
-        "Cartão consignado RMC e RCC",
-        "Juros abusivos e revisão de contrato",
-        "Golpe do Pix e fraude bancária",
-        "Defesa em execução e desbloqueio de conta",
+        "Acordo de sócios e entrada e saída de sócio",
+        "Contratos, confidencialidade e licenciamento",
+        "Registro de marca e patente no INPI",
+        "Transação tributária e execução fiscal",
+        "Defesa em execução, fraude bancária e busca e apreensão",
       ],
     },
     atuacao: [
@@ -135,15 +144,16 @@ export const SOCIOS: Socio[] = [
     areas: [
       "direito-societario",
       "contratos-empresariais",
-      "direito-bancario",
       "marcas-e-propriedade-intelectual",
+      "direito-tributario",
+      "direito-bancario",
     ],
     destaques: [
       "Acordo de sócios e entrada e saída de sócio",
       "NDA, cessão e licenciamento de marca",
-      "Defesa em execução e desbloqueio de conta",
       "Registro de marca e patente no INPI",
-      "Economia criativa e estruturação de lançamentos",
+      "Transação tributária e execução fiscal",
+      "Defesa em execução e desbloqueio de conta",
     ],
   },
   {
@@ -171,22 +181,24 @@ export const SOCIOS: Socio[] = [
       "No direito bancário, divide com Vitor Silvino a defesa em execução e a revisão de contratos com instituições financeiras.",
     ],
     foco: {
-      titulo: "Advogada de Família e Bancária em Belo Horizonte",
-      cargo: "advogada de família e bancária",
+      titulo: "Advogada Patrimonial em Belo Horizonte",
+      cargo: "advogada patrimonial",
       pagina: { href: "/advogada-de-familia/belo-horizonte", nome: "Advogada de família em Belo Horizonte" },
-      areas: ["familia-e-sucessoes", "direito-bancario"],
+      areas: ["familia-e-sucessoes", "direito-imobiliario", "restituicao-ir-doenca-grave", "direito-bancario"],
       atuacao: [
         "Atua em família e sucessões: divórcio, guarda e alimentos, inventário e partilha, e no planejamento que vem antes deles, como o pacto antenupcial e a escolha do regime de bens.",
         "No inventário e na partilha, organiza o patrimônio da família e conduz o caminho em cartório, quando há acordo, ou na Justiça, quando não há.",
+        "No imobiliário, cuida de usucapião, ações possessórias e da regularização do patrimônio da família.",
+        "Conduz o pedido de isenção do imposto de renda por doença grave sobre aposentadoria e pensão, e a restituição do que foi retido.",
         "Conduz também casos familiares com elementos fora do Brasil: partilha com bens em mais de um país, sucessão de patrimônio no exterior e conflito entre pessoas que vivem em países diferentes.",
         "No direito bancário, atua ao lado do Dr. Vitor Silvino na defesa de quem é cobrado pelo banco, da revisão de contratos à defesa em execução.",
       ],
       destaques: [
         "Divórcio, guarda e alimentos",
         "Inventário e partilha",
-        "Pacto antenupcial e regime de bens",
+        "Usucapião e ações possessórias",
+        "Restituição de IR por doença grave",
         "Conflitos familiares e patrimoniais no exterior",
-        "Revisão de contrato e defesa em execução bancária",
       ],
     },
     formacao: [
@@ -196,6 +208,7 @@ export const SOCIOS: Socio[] = [
     areas: [
       "familia-e-sucessoes",
       "direito-imobiliario",
+      "restituicao-ir-doenca-grave",
       "direito-bancario",
     ],
     destaques: [
@@ -220,16 +233,19 @@ export type Area = {
 };
 
 export const AREAS: Area[] = [
-  { slug: "direito-societario", nome: "Societário e acordo de sócios", prosa: "direito societário", socios: ["vitor-silvino"] },
-  { slug: "contratos-empresariais", nome: "Contratos empresariais", prosa: "contratos empresariais", socios: ["vitor-silvino"] },
-  { slug: "direito-bancario", nome: "Bancário e defesa em execução", prosa: "direito bancário", socios: ["vitor-silvino", "thayane-barbosa"] },
-  { slug: "marcas-e-propriedade-intelectual", nome: "Marcas, patentes e propriedade intelectual", prosa: "propriedade intelectual", socios: ["vitor-silvino"] },
+  // Frente patrimonial (reunião dos sócios de 16/11/2026)
   { slug: "familia-e-sucessoes", nome: "Família e sucessões", prosa: "família e sucessões", socios: ["thayane-barbosa"] },
   { slug: "direito-imobiliario", nome: "Imobiliário e patrimônio", prosa: "direito imobiliário", socios: ["thayane-barbosa"] },
-  // Previdenciário é conduzido por advogada associada. Nome e OAB pendentes,
-  // e falta decidir se ela aparece no site. Até lá, sem "Quem conduz".
-  { slug: "direito-previdenciario", nome: "Previdenciário", prosa: "direito previdenciário", socios: null },
-  { slug: "concursos-publicos", nome: "Concursos públicos", prosa: "concursos públicos", socios: null },
+  { slug: "direito-bancario", nome: "Bancário e defesa em execução", prosa: "direito bancário", socios: ["vitor-silvino", "thayane-barbosa"] },
+  { slug: "restituicao-ir-doenca-grave", nome: "Restituição de IR por doença grave", prosa: "restituição de imposto de renda por doença grave", socios: ["thayane-barbosa", "vitor-silvino"] },
+  // Frente empresarial
+  { slug: "direito-societario", nome: "Societário e acordo de sócios", prosa: "direito societário", socios: ["vitor-silvino"] },
+  { slug: "contratos-empresariais", nome: "Contratos empresariais", prosa: "contratos empresariais", socios: ["vitor-silvino"] },
+  { slug: "marcas-e-propriedade-intelectual", nome: "Marcas, patentes e propriedade intelectual", prosa: "propriedade intelectual", socios: ["vitor-silvino"] },
+  { slug: "direito-tributario", nome: "Tributário e transação tributária", prosa: "direito tributário", socios: ["vitor-silvino"] },
+  // Previdenciário e Concursos públicos saíram em 16/11/2026: só por indicação
+  // a parceiro externo. As URLs antigas viram páginas de redirecionamento em
+  // public/ (ver public/areas-de-atuacao/).
 ];
 
 /** Link para o perfil do sócio: a página própria, ou o bloco dele em /sobre

@@ -31,11 +31,11 @@ const texto = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${ESCRITORIO.dominio}`),
   title: {
-    default: `Advocacia em Belo Horizonte | ${ESCRITORIO.marca}`,
+    default: `Advocacia patrimonial e empresarial em Belo Horizonte | ${ESCRITORIO.marca}`,
     template: `%s | ${ESCRITORIO.marca}`,
   },
   description:
-    "Escritório em Belo Horizonte com atuação em Direito Bancário, Família, Imobiliário e Empresarial. Atendimento remoto em todo o Brasil.",
+    "Advocacia patrimonial e empresarial em Belo Horizonte: família e sucessões, inventário, imobiliário, bancário, busca e apreensão, societário, contratos e marcas. Atendimento remoto em todo o Brasil.",
   alternates: { types: { "application/rss+xml": "/feed.xml" } },
   // Preview e ambiente local nunca são indexados. Ver docs/decisoes-tecnicas.md.
   robots:

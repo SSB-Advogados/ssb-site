@@ -45,8 +45,8 @@ function Amostra({ escura = false }: { escura?: boolean }) {
             Divórcio, guarda, alimentos, inventário e partilha, inclusive com
             empresa no meio.
           </Card>
-          <Card titulo="Previdenciário" href="#">
-            BPC e LOAS negados, tempo especial e benefícios por incapacidade.
+          <Card titulo="Inventário e partilha" href="#">
+            Inventário em cartório ou na Justiça, imóvel travado e herdeiro que não assina.
             Card sem sócio, para mostrar que ele não fica menor.
           </Card>
         </div>

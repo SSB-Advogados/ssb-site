@@ -10,7 +10,7 @@ import { JsonLd, breadcrumb } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Conteúdo jurídico",
   description:
-    "Artigos sobre acordo de sócios, contratos, conta bloqueada, registro de marca, inventário, BPC e concursos, assinados pelos advogados do SSB.",
+    "Artigos sobre acordo de sócios, contratos, conta bloqueada, registro de marca, inventário e patrimônio, assinados pelos advogados do SSB.",
   alternates: { canonical: "/blog" },
 };
 
